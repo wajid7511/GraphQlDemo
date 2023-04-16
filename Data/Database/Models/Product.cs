@@ -35,7 +35,7 @@ namespace Database.Models
         public DateTimeOffset? LastUpdateTime { get; set; }
         #endregion
 
-        #region Navigations
+        #region Navigations 
         public Grocery? Grocery { get; set; }
         #endregion
     }

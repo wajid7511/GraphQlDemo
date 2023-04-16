@@ -9,6 +9,7 @@ namespace Database.Models
     {
         public Grocery()
         {
+            Products = Array.Empty<Product>();
             Name = string.Empty;
         }
 
@@ -23,6 +24,9 @@ namespace Database.Models
         public DateTimeOffset CreatedOn { get; set; }
 
         public DateTimeOffset? LastUpdateTime { get; set; }
+        #region
+        public IEnumerable<Product> Products { get; set; }
+        #endregion
     }
 }
 

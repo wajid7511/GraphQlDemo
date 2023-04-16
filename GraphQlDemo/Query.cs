@@ -13,6 +13,14 @@ namespace GraphQlDemo
         [UseSorting]
         public IQueryable<Product> Products([Service] GraphQlDatabaseContext dbContext)
             => dbContext.Products;
+
+
+        [UseOffsetPaging(DefaultPageSize = 10, IncludeTotalCount = true, MaxPageSize = 100)]
+        [UseProjection]
+        [UseFiltering]
+        [UseSorting]
+        public IQueryable<Grocery> Groceries([Service] GraphQlDatabaseContext dbContext)
+            => dbContext.Groceries;
     }
 }
 

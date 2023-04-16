@@ -9,7 +9,6 @@ namespace Database.Configurations
     {
         public void Configure(EntityTypeBuilder<Grocery> builder)
         {
-
         }
     }
 }
