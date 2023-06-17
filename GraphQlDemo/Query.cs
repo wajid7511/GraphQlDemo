@@ -2,6 +2,7 @@
 using Database;
 using Database.Models;
 using HotChocolate;
+using Microsoft.EntityFrameworkCore;
 
 namespace GraphQlDemo
 {
@@ -12,7 +13,7 @@ namespace GraphQlDemo
         [UseFiltering]
         [UseSorting]
         public IQueryable<Product> Products([Service] GraphQlDatabaseContext dbContext)
-            => dbContext.Products;
+            => dbContext.Products.Include(p => p.Grocery);
     }
 }
 
