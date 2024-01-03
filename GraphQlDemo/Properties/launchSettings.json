@@ -1,5 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/launchsettings.json",
+  "console": "externalTerminal",
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
