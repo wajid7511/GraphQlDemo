@@ -1,7 +1,7 @@
-﻿using System;
+﻿using AutoMapper;
 using Database;
 using Database.Models;
-using HotChocolate;
+using GraphQlDemo.API.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace GraphQlDemo
@@ -12,8 +12,11 @@ namespace GraphQlDemo
         [UseProjection]
         [UseFiltering]
         [UseSorting]
-        public IQueryable<Product> Products([Service] GraphQlDatabaseContext dbContext)
-            => dbContext.Products.Include(p => p.Grocery);
+        public IQueryable<ProductSchema> Products(
+            [Service] GraphQlDatabaseContext dbContext,
+            [Service] IMapper mapper)
+        {
+            return mapper.ProjectTo<ProductSchema>(dbContext.Products.Include(p => p.Grocery));
+        }
     }
 }
-

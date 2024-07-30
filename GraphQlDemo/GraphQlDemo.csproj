@@ -24,9 +24,13 @@
     <PackageReference Include="HotChocolate.Data.EntityFramework" Version="13.2.1" />
     <PackageReference Include="HotChocolate.AspNetCore" Version="13.2.1" />
     <PackageReference Include="HotChocolate.AspNetCore.Authorization" Version="13.2.1" />
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data\Database\Database.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+    <ProjectReference Include="..\GraphQlDemo.API.Models\GraphQlDemo.API.Models.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
   </ItemGroup>

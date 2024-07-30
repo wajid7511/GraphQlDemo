@@ -17,6 +17,8 @@ builder.Services.AddGraphQLServer()
     // .AddType<ProductType>()
     // .AddType<GroceryType>()
     // .AddAuthorization() ;
+//Add Auto Mapper 
+builder.Services.AddMapper();
 
 builder.Services.AddControllers();
 // builder.Services.AddAuthorization(c =>

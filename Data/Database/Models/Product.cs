@@ -1,30 +1,22 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Diagnostics.CodeAnalysis;
-using Azure;
 
 namespace Database.Models
 {
     [Table("Products")]
     public class Product
     {
-        public Product()
-        {
-            Name = string.Empty;
-            ImageUrl = string.Empty;
-        }
         #region Properties
         [Key]
         public int Id { get; set; }
 
         [Required]
         [StringLength(50, MinimumLength = 3, ErrorMessage = "Name should be between 3-50 characters")]
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
 
         [StringLength(100, MinimumLength = 3, ErrorMessage = "ImageUrl should be between 3-50 characters")]
-        public string ImageUrl { get; set; }
+        public string ImageUrl { get; set; } = string.Empty;
         [Required]
         [ForeignKey("Grocery")]
         public int GroceryId { get; set; }
