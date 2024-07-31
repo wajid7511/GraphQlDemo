@@ -8,7 +8,8 @@ public class GraphQlDemoProfile : Profile
 {
     public GraphQlDemoProfile()
     {
-        CreateMap<Product, ProductSchema>();
+        CreateMap<Product, ProductSchema>()
+            .ForMember(m => m.ProductImageUrl, opt => opt.MapFrom(s => s.ImageUrl));
         CreateMap<Grocery, GrocerySchema>();
     }
 }
