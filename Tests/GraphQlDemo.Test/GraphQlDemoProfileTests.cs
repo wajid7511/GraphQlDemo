@@ -17,10 +17,17 @@ public class GraphQlDemoProfileTests
         });
 
         _mapper = _config.CreateMapper();
-    } 
+    }
+
+    [TestCleanup]
+    public void Cleanup()
+    {
+        //
+    }
+
     [TestMethod]
-    public void Asser_Mapper_Configurations() 
-    { 
+    public void Asser_Mapper_Configurations()
+    {
         _mapper.ConfigurationProvider.AssertConfigurationIsValid();
     }
 }
