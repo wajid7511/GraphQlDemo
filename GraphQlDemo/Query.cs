@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
-using Database;
-using Database.Models;
+using GraphQl.Database;
 using GraphQlDemo.API.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,7 +13,8 @@ namespace GraphQlDemo
         [UseSorting]
         public IQueryable<ProductSchema> Products(
             [Service] GraphQlDatabaseContext dbContext,
-            [Service] IMapper mapper)
+            [Service] IMapper mapper
+        )
         {
             return mapper.ProjectTo<ProductSchema>(dbContext.Products.Include(p => p.Grocery));
         }

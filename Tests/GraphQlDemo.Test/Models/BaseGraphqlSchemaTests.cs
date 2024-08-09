@@ -9,7 +9,7 @@ public abstract class BaseGraphqlSchemaTests
     public void VerifyGraphQlName()
     {
         var obj = GetObj();
-        Dictionary<string, string> graphQlNameDictionary = [];
+        Dictionary<string, string> graphQlNameDictionary = new();
         Type type = obj.GetType();
         PropertyInfo[] props = type.GetProperties();  
         foreach (PropertyInfo prp in props)

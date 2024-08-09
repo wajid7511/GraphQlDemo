@@ -1,0 +1,57 @@
+mutation AddProduct {
+    addProduct(
+        rquest: {
+            productMame: "Fresh Milk 1"
+            productImageUrl: "https://unsplash.com/photos/164_6wVEHfINULL"
+            groceryId: 5
+        }
+    ) {
+        id
+        name
+        productImageUrl
+        groceryId
+        createdOn
+        lastUpdateTime
+        grocery {
+            id
+            name
+            createdOn
+            lastUpdateTime
+        }
+    }
+}
+ 
+
+mutation AddGrocery {
+    addGrocery(rquest: { name: "Madinah 1" }) {
+        id
+        name
+        createdOn
+        lastUpdateTime
+    }
+}
+
+
+query Products {
+    products(skip: 0, take: 10) {
+        totalCount
+        pageInfo {
+            hasNextPage
+            hasPreviousPage
+        }
+        items {
+            id
+            name
+            productImageUrl
+            groceryId
+            createdOn
+            lastUpdateTime
+            grocery {
+                id
+                name
+                createdOn
+                lastUpdateTime
+            }
+        }
+    }
+}

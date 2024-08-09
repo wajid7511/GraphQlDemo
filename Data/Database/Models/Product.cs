@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Database.Models
+namespace GraphQl.Database.Models
 {
     [Table("Products")]
     public class Product

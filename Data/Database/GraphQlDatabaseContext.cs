@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reflection.Emit;
-using Database.Configurations;
-using Database.Models;
+﻿using GraphQl.Database.Configurations;
+using GraphQl.Database.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 
-namespace Database
+namespace GraphQl.Database
 {
     public class GraphQlDatabaseContext : DbContext
-    {
+    { 
         public GraphQlDatabaseContext(DbContextOptions options) : base(options)
         {
         }

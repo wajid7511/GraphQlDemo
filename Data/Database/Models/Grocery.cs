@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Database.Models
+namespace GraphQl.Database.Models
 {
     [Table("Groceries")]
     public class Grocery

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Database.Migrations
+namespace GraphQl.Database.Migrations
 {
     /// <inheritdoc />
     public partial class InitMigration : Migration
@@ -46,7 +46,7 @@ namespace Database.Migrations
                         column: x => x.GroceryId,
                         principalTable: "Groceries",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

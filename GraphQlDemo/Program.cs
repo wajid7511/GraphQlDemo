@@ -1,26 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Database;
-using GraphQlDemo;
+﻿using GraphQlDemo;
 
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-
-builder.Services.AddDbContext<GraphQlDatabaseContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
-
-builder.Services.AddGraphQLServer()
-    .AddQueryType<Query>()
-    .AddProjections()
-    .AddFiltering()
-    .AddSorting();
-    // .AddType<ProductType>()
-    // .AddType<GroceryType>()
-    // .AddAuthorization() ;
-//Add Auto Mapper 
+ 
+builder.Services.AddAbstractions();
+builder.Services.AddDatabase(builder.Configuration);
+builder.Services.AddGraphQl();
 builder.Services.AddMapper();
 
 builder.Services.AddControllers();
+
 // builder.Services.AddAuthorization(c =>
 // {
 //     c.AddPolicy("NamePolicy", builder =>
@@ -51,19 +39,16 @@ builder.Services.AddControllers();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-}
+if (app.Environment.IsDevelopment()) { }
 
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.UseRouting()
-.UseEndpoints(endpoints =>
-{
-    endpoints.MapGraphQL();
-});
+    .UseEndpoints(endpoints =>
+    {
+        endpoints.MapGraphQL();
+    });
 
 app.Run();
-

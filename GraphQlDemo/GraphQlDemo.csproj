@@ -27,12 +27,12 @@
     <PackageReference Include="AutoMapper" Version="13.0.1" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Data\Database\Database.csproj">
-      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
-    </ProjectReference>
+    <ProjectReference Include="../Data/Database/GraphQl.Database.csproj" />
     <ProjectReference Include="..\GraphQlDemo.API.Models\GraphQlDemo.API.Models.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
+    <ProjectReference Include="..\Core\GraphQl.Core\GraphQl.Core.csproj" />
+    <ProjectReference Include="..\Abstractions\GraphQl.Abstractions\GraphQl.Abstractions.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ObjectTypes\" />

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Security.Claims;
-using Database.Models;
-using HotChocolate.Authorization;
+﻿using GraphQl.Database.Models;
 
 namespace GraphQlDemo.ObjectTypes
 {

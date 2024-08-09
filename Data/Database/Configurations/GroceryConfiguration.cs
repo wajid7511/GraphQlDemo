@@ -1,9 +1,8 @@
-﻿using System;
-using Database.Models;
+﻿using GraphQl.Database.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Database.Configurations
+namespace GraphQl.Database.Configurations
 {
     public class GroceryConfiguration : IEntityTypeConfiguration<Grocery>
     {

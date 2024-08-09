@@ -1,72 +1,132 @@
-This project has been created to connect GraphQl with Database Context directly. 
+# GraphQL API with ASP.NET Core and HotChocolate
 
-Queries Example
+## Overview
 
-{
-  products(
-    take: 100
-    skip: 1
-  ) {
-    items {
-      id
-      name
-      imageUrl
-      createdOn
-      groceryId 
-    }
-  }
-}
+This project demonstrates the implementation of a GraphQL API using ASP.NET Core and HotChocolate, with a SQL database backend. The project employs a Code First approach to define the GraphQL schema and uses AutoMapper to map database entities to the GraphQL schema.
 
-{
-  products(
-    take: 100
-    skip: 1
-    order: { name: DESC } 
-  ) {
-    items {
-      id
-      name
-      imageUrl
-      createdOn
-      groceryId 
-    }
-  }
-}
-{
-  products(
-    take: 100
-    skip: 1
-    order: { name: DESC }
-    where: { name: { contains: "s" } }
-  ) {
-    items {
-      id
-      name
-      imageUrl
-      createdOn
-      groceryId 
-    }
-  }
-}
+## Features
 
-{
-  products(
-    take: 100
-    skip: 1
-    order: { name: DESC }
-    where: { name: { contains: "s" } }
-  ) {
-    items {
-      id
-      name
-      imageUrl
-      createdOn
-      groceryId
-      grocery {
+- **GraphQL HotChocolate**: Provides a powerful and flexible GraphQL server implementation.
+- **ASP.NET Core**: Serves as the web framework for building the API.
+- **SQL Database**: Stores data for groceries and products.
+- **AutoMapper**: Maps database entities to GraphQL schema models.
+- **Code First Approach**: Defines GraphQL schema based on C# classes.
+
+## GraphQL Schema
+
+### Mutations
+
+1. **AddGrocery**
+   - Adds a new grocery to the database.
+   - Input: `GroceryInput` type.
+   - Output: `Grocery` type.
+
+2. **AddProductToGrocery**
+   - Adds a product to a specified grocery.
+   - Input: `ProductToGroceryInput` type.
+   - Output: `Product` type.
+
+### Queries
+
+1. **GetProducts**
+   - Retrieves a IQueryable of products with pagination support.
+   - Output: IQueryable of `Product` types.
+   - Pagination: Uses `UseOffsetPaging` to handle page navigation with `pageInfo` that includes `hasNextPage` and `hasPreviousPage`.
+
+## Installation
+
+1. **Clone the Repository**
+   ```bash
+   git clone <repository-url>
+   cd <project-directory>
+Restore Dependencies
+
+bash
+Copy code
+dotnet restore
+Run the Application
+
+bash
+Copy code
+dotnet run
+Access GraphQL Playground
+
+Open your browser and navigate to https://localhost:7104/graphql/ to interact with the GraphQL API.
+Configuration
+Database Connection: Ensure your SQL database connection string is correctly configured in appsettings.json.
+Usage
+Use the GraphQL Playground or any GraphQL client to execute queries and mutations.
+For example, to add a new grocery, use the AddGrocery mutation with the required input fields.
+Example Queries
+Add Grocery Mutation
+graphql
+Copy code
+mutation AddGrocery {
+    addGrocery(rquest: { name: "Madinah 1" }) {
         id
         name
         createdOn
-      }
+        lastUpdateTime
     }
-  }
 }
+
+Add Product to Grocery Mutation
+graphql
+Copy code
+mutation AddProduct {
+    addProduct(
+        rquest: {
+            productMame: "Fresh Milk 1"
+            productImageUrl: "https://unsplash.com/photos/164_6wVEHfINULL"
+            groceryId: 5
+        }
+    ) {
+        id
+        name
+        productImageUrl
+        groceryId
+        createdOn
+        lastUpdateTime
+        grocery {
+            id
+            name
+            createdOn
+            lastUpdateTime
+        }
+    }
+}
+Get Products Query
+graphql
+Copy code
+query Products {
+    products(skip: 0, take: 10) {
+        totalCount
+        pageInfo {
+            hasNextPage
+            hasPreviousPage
+        }
+        items {
+            id
+            name
+            productImageUrl
+            groceryId
+            createdOn
+            lastUpdateTime
+            grocery {
+                id
+                name
+                createdOn
+                lastUpdateTime
+            }
+        }
+    }
+}
+
+Contribution
+Feel free to fork the repository and submit pull requests with improvements or new features.
+
+License
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+Contact
+For any questions or feedback, please contact email2wajidkhan@gmail.com, Phone Number +971566290465.
