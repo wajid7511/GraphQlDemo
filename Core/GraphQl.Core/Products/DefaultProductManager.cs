@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using GraphQl.Abstractions;
-using GraphQl.Database;
+using GraphQl.Database.DAL;
 using GraphQl.Database.Models;
 using GraphQlDemo.API.Models;
 
@@ -8,13 +8,12 @@ namespace GraphQl.Core;
 
 public class DefaultProductManager : IProductManager
 {
-    private readonly GraphQlDatabaseContext _databaseContext;
+    private readonly ProductDAL _productDAL;
     private readonly IMapper _mapper;
 
-    public DefaultProductManager(GraphQlDatabaseContext databaseContext, IMapper mapper)
+    public DefaultProductManager(ProductDAL productDAL, IMapper mapper)
     {
-        _databaseContext =
-            databaseContext ?? throw new ArgumentNullException(nameof(databaseContext));
+        _productDAL = productDAL ?? throw new ArgumentNullException(nameof(productDAL));
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
     }
 
@@ -24,9 +23,9 @@ public class DefaultProductManager : IProductManager
         try
         {
             var product = _mapper.Map<Product>(input);
-            var dbAddResult = await _databaseContext.AddAsync(product);
-            await _databaseContext.SaveChangesAsync();
-            return dbAddResult.Entity.Id;
+            var dbAddResult = await _productDAL.AddProduct_Async(product);
+
+            return dbAddResult.Entity?.Id ?? 0;
         }
         catch (Exception ex)
         {

@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
-using GraphQl.Abstractions; 
+using GraphQl.Abstractions;
 using GraphQl.Database;
-using Microsoft.EntityFrameworkCore; 
+using Microsoft.EntityFrameworkCore;
 
 namespace GraphQlDemo;
 
@@ -13,7 +13,7 @@ public static class GraphQlDemoServiceExtension
         return service;
     }
 
-    public static void RegisterCoreServices(this IServiceCollection services)
+    public static void RegisterIServicesRegisterModules(this IServiceCollection services)
     {
         var assemblies = Directory
             .GetFiles(AppDomain.CurrentDomain.BaseDirectory, "*.dll")

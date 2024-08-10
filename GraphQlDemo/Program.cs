@@ -1,8 +1,8 @@
 ﻿using GraphQlDemo;
 
 var builder = WebApplication.CreateBuilder(args);
- 
-builder.Services.RegisterCoreServices();
+
+builder.Services.RegisterIServicesRegisterModules();
 builder.Services.AddDatabase(builder.Configuration);
 builder.Services.AddGraphQl();
 builder.Services.AddMapper();
