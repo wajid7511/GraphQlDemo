@@ -13,7 +13,10 @@ public static class GraphQlDemoServiceExtension
         return service;
     }
 
-    public static void RegisterIServicesRegisterModules(this IServiceCollection services)
+    public static void RegisterIServicesRegisterModules(
+        this IServiceCollection services,
+        ConfigurationManager configuration
+    )
     {
         var assemblies = Directory
             .GetFiles(AppDomain.CurrentDomain.BaseDirectory, "*.dll")
@@ -35,7 +38,7 @@ public static class GraphQlDemoServiceExtension
             if (moduleInstance is not null)
             {
                 var module = (IServiceRegistrationModule)moduleInstance;
-                module?.RegisterServices(services);
+                module?.RegisterServices(services, configuration);
             }
         }
     }
@@ -47,6 +50,7 @@ public static class GraphQlDemoServiceExtension
             .AddMutationType<Mutation>()
             .AddTypeExtension<ProductMutation>()
             .AddTypeExtension<GroceryMutation>()
+            .AddTypeExtension<CustomerMutation>()
             .AddQueryType<Query>()
             .AddProjections()
             .AddFiltering()

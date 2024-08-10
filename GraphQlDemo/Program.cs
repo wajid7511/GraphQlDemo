@@ -2,7 +2,7 @@
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.RegisterIServicesRegisterModules();
+builder.Services.RegisterIServicesRegisterModules(builder.Configuration);
 builder.Services.AddDatabase(builder.Configuration);
 builder.Services.AddGraphQl();
 builder.Services.AddMapper();

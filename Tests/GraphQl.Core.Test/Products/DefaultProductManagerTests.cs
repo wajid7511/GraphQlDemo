@@ -4,6 +4,7 @@ using GraphQl.Database;
 using GraphQl.Database.DAL;
 using GraphQl.Database.Models;
 using GraphQlDemo.API.Models;
+using GraphQlDemo.Shared.Database;
 using Moq;
 
 namespace GraphQl.Core.Test.Products;

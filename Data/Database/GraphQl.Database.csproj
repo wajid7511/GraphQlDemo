@@ -29,5 +29,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Abstractions\GraphQl.Abstractions\GraphQl.Abstractions.csproj" />
+    <ProjectReference Include="..\..\Shared\GraphQlDemo.Shared\GraphQlDemo.Shared.csproj" />
   </ItemGroup>
 </Project>

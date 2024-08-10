@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using GraphQl.Abstractions;
 using GraphQl.Database.Models;
+using GraphQl.Mongo.Database.Models;
 using GraphQlDemo.API.Models;
 
 namespace GraphQlDemo;
@@ -17,5 +19,11 @@ public class GraphQlDemoProfile : Profile
             .ForMember(m => m.LastUpdateTime, opt => opt.Ignore())
             .ForMember(m => m.Grocery, opt => opt.Ignore());
         CreateMap<Grocery, GrocerySchema>();
+        CreateMap<Customer, CustomerDto>();
+        CreateMap<CustomerDto, CustomerSchema>();
+        CreateMap<CustomerInput, Customer>()
+            .ForMember(m => m.Id, opt => opt.Ignore())
+            .ForMember(m => m.CreatedOn, opt => opt.Ignore())
+            .ForMember(m => m.LastUpdateTime, opt => opt.Ignore());
     }
 }

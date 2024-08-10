@@ -30,6 +30,18 @@ mutation AddGrocery {
         lastUpdateTime
     }
 }
+---- Mongo Database
+mutation AddCustomer {
+    addCustomer(
+        rquest: { name: "Wajid1", email: "test1@gmail.com", phoneNumber: "+971566290461" }
+    ) {
+        id
+        name
+        email
+        phoneNumber
+    }
+}
+
 
 
 query Products {

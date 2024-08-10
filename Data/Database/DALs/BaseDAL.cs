@@ -1,3 +1,5 @@
+using GraphQlDemo.Shared.Database;
+
 namespace GraphQl.Database.DAL;
 
 public abstract class BaseDAL

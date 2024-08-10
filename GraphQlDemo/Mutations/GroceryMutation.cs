@@ -1,7 +1,5 @@
 using AutoMapper;
-using GraphQl.Abstractions;
 using GraphQl.Database;
-using GraphQl.Database.Models;
 using GraphQlDemo.API.Models;
 
 namespace GraphQlDemo;

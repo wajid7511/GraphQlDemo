@@ -1,6 +1,7 @@
 using GraphQl.Abstractions;
 using GraphQl.Database.DAL;
 using GraphQl.Database.Models;
+using GraphQlDemo.Shared.Database;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 
