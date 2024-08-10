@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphQl.Database.Test", "Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphQlDemo.API.Models.Test", "Tests\GraphQlDemo.API.Models.Test\GraphQlDemo.API.Models.Test.csproj", "{7035EE8D-6596-45A1-A74E-3F4241CA641D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphQl.Core.Test", "Tests\GraphQl.Core.Test\GraphQl.Core.Test.csproj", "{D2A51E8E-13FF-48AB-A58D-AD1182DDD32A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +69,10 @@ Global
 		{7035EE8D-6596-45A1-A74E-3F4241CA641D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7035EE8D-6596-45A1-A74E-3F4241CA641D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7035EE8D-6596-45A1-A74E-3F4241CA641D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2A51E8E-13FF-48AB-A58D-AD1182DDD32A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2A51E8E-13FF-48AB-A58D-AD1182DDD32A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2A51E8E-13FF-48AB-A58D-AD1182DDD32A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2A51E8E-13FF-48AB-A58D-AD1182DDD32A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -79,6 +85,7 @@ Global
 		{053CD921-DE9C-46D5-A7B1-CBC14C227AD8} = {D7949E21-962C-46C5-963F-4067DBC48F47}
 		{9E352452-1BE3-4176-B53C-ED0427F29234} = {D05B24FE-56FC-40EE-813B-22E9461D7476}
 		{7035EE8D-6596-45A1-A74E-3F4241CA641D} = {D05B24FE-56FC-40EE-813B-22E9461D7476}
+		{D2A51E8E-13FF-48AB-A58D-AD1182DDD32A} = {D05B24FE-56FC-40EE-813B-22E9461D7476}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {942D37DD-F487-4535-BDDC-E5268CACD105}

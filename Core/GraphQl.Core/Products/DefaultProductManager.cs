@@ -20,17 +20,8 @@ public class DefaultProductManager : IProductManager
     public async ValueTask<int> AddProductAsync(ProductInput input)
     {
         ArgumentNullException.ThrowIfNull(input, nameof(input));
-        try
-        {
-            var product = _mapper.Map<Product>(input);
-            var dbAddResult = await _productDAL.AddProduct_Async(product);
-
-            return dbAddResult.Entity?.Id ?? 0;
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.ToString());
-            return 0;
-        }
+        var product = _mapper.Map<Product>(input);
+        var dbAddResult = await _productDAL.AddProduct_Async(product);
+        return dbAddResult.Entity?.Id ?? 0;
     }
 }

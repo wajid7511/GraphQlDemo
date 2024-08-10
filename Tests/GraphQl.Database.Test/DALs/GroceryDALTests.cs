@@ -32,7 +32,7 @@ public class GroceryDALTests
     {
         // Act & Assert
         _ = Assert.ThrowsException<ArgumentNullException>(
-            () => _groceryDAL.AddGrocery_Async(null as Grocery).GetAwaiter().GetResult()
+            () => _groceryDAL.AddGrocery_Async(null).GetAwaiter().GetResult()
         );
     }
 

@@ -7,7 +7,7 @@ public class GroceryDAL : BaseDAL
     public GroceryDAL(GraphQlDatabaseContext databaseContext)
         : base(databaseContext) { }
 
-    public async ValueTask<DbAddResult<Grocery>> AddGrocery_Async(Grocery grocery)
+    public virtual async ValueTask<DbAddResult<Grocery>> AddGrocery_Async(Grocery grocery)
     {
         if (grocery == null)
         {

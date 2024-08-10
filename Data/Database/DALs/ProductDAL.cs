@@ -7,7 +7,7 @@ public class ProductDAL : BaseDAL
     public ProductDAL(GraphQlDatabaseContext databaseContext)
         : base(databaseContext) { }
 
-    public async ValueTask<DbAddResult<Product>> AddProduct_Async(Product product)
+    public virtual async ValueTask<DbAddResult<Product>> AddProduct_Async(Product product)
     {
         if (product == null)
         {

@@ -32,7 +32,7 @@ public class ProductDALTests
     {
         // Act & Assert
         _ = Assert.ThrowsException<ArgumentNullException>(
-            () => _ProductDAL.AddProduct_Async(null as Product).GetAwaiter().GetResult()
+            () => _ProductDAL.AddProduct_Async(null).GetAwaiter().GetResult()
         );
     }
 
