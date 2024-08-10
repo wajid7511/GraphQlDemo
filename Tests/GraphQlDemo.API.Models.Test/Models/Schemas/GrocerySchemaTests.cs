@@ -1,10 +1,8 @@
-﻿using GraphQlDemo.API.Models;
-
-namespace GraphQlDemo.Test;
+﻿namespace GraphQlDemo.API.Models.Test.Schemas;
 
 [TestClass]
 public class GrocerySchemaTests : BaseGraphqlSchemaTests
-{  
+{
     public override object GetObj()
     {
         return new GrocerySchema();

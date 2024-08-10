@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using HotChocolate;
 
-namespace GraphQlDemo.Test;
+namespace GraphQlDemo.API.Models.Test;
 
 public abstract class BaseGraphqlSchemaTests
 {

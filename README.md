@@ -76,7 +76,7 @@ a) **Add Grocery**
         mutation AddProduct {
           addProduct(
             rquest: {
-              productMame: "Fresh Milk 1"
+              productName: "Fresh Milk 1"
               productImageUrl: "https://unsplash.com/photos/164_6wVEHfINULL"
               groceryId: 5
             }

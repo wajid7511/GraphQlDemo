@@ -1,6 +1,4 @@
-﻿using GraphQlDemo.API.Models;
-
-namespace GraphQlDemo.Test;
+﻿namespace GraphQlDemo.API.Models.Test.Schemas;
 
 [TestClass]
 public class ProductSchemaTests : BaseGraphqlSchemaTests

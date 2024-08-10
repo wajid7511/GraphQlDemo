@@ -25,6 +25,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphQl.Abstractions", "Abs
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphQl.Core", "Core\GraphQl.Core\GraphQl.Core.csproj", "{053CD921-DE9C-46D5-A7B1-CBC14C227AD8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphQl.Database.Test", "Tests\GraphQl.Database.Test\GraphQl.Database.Test.csproj", "{9E352452-1BE3-4176-B53C-ED0427F29234}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphQlDemo.API.Models.Test", "Tests\GraphQlDemo.API.Models.Test\GraphQlDemo.API.Models.Test.csproj", "{7035EE8D-6596-45A1-A74E-3F4241CA641D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +59,14 @@ Global
 		{053CD921-DE9C-46D5-A7B1-CBC14C227AD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{053CD921-DE9C-46D5-A7B1-CBC14C227AD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{053CD921-DE9C-46D5-A7B1-CBC14C227AD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E352452-1BE3-4176-B53C-ED0427F29234}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E352452-1BE3-4176-B53C-ED0427F29234}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E352452-1BE3-4176-B53C-ED0427F29234}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E352452-1BE3-4176-B53C-ED0427F29234}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7035EE8D-6596-45A1-A74E-3F4241CA641D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7035EE8D-6596-45A1-A74E-3F4241CA641D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7035EE8D-6596-45A1-A74E-3F4241CA641D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7035EE8D-6596-45A1-A74E-3F4241CA641D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -65,6 +77,8 @@ Global
 		{7E2CC39D-D3B9-4549-B512-73DB69EC8D60} = {D05B24FE-56FC-40EE-813B-22E9461D7476}
 		{8F2920BF-D8FF-419D-A981-26493E84AC23} = {64DA9D0B-CB02-486B-861C-2D71006F1AB2}
 		{053CD921-DE9C-46D5-A7B1-CBC14C227AD8} = {D7949E21-962C-46C5-963F-4067DBC48F47}
+		{9E352452-1BE3-4176-B53C-ED0427F29234} = {D05B24FE-56FC-40EE-813B-22E9461D7476}
+		{7035EE8D-6596-45A1-A74E-3F4241CA641D} = {D05B24FE-56FC-40EE-813B-22E9461D7476}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {942D37DD-F487-4535-BDDC-E5268CACD105}
