@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace GraphQl.Core;
 
-public class CoreRegisterServices : IServiceRegistrationModule
+public class DatabaseRegisterServices : IServiceRegistrationModule
 {
     public void RegisterServices(IServiceCollection services)
     {
