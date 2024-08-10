@@ -2,7 +2,7 @@
 
 var builder = WebApplication.CreateBuilder(args);
  
-builder.Services.AddAbstractions();
+builder.Services.RegisterCoreServices();
 builder.Services.AddDatabase(builder.Configuration);
 builder.Services.AddGraphQl();
 builder.Services.AddMapper();

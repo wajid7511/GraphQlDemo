@@ -30,8 +30,7 @@
     <ProjectReference Include="../Data/Database/GraphQl.Database.csproj" />
     <ProjectReference Include="..\GraphQlDemo.API.Models\GraphQlDemo.API.Models.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
-    </ProjectReference>
-    <ProjectReference Include="..\Core\GraphQl.Core\GraphQl.Core.csproj" />
+    </ProjectReference> 
     <ProjectReference Include="..\Abstractions\GraphQl.Abstractions\GraphQl.Abstractions.csproj" />
   </ItemGroup>
   <ItemGroup>

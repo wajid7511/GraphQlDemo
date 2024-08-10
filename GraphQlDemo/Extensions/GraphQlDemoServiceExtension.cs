@@ -1,7 +1,7 @@
-﻿using GraphQl.Abstractions;
-using GraphQl.Core;
+﻿using System.Reflection;
+using GraphQl.Abstractions; 
 using GraphQl.Database;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore; 
 
 namespace GraphQlDemo;
 
@@ -13,11 +13,31 @@ public static class GraphQlDemoServiceExtension
         return service;
     }
 
-    public static IServiceCollection AddAbstractions(this IServiceCollection service)
+    public static void RegisterCoreServices(this IServiceCollection services)
     {
-        service.AddScoped<IProductManager, DefaultProductManager>();
-        service.AddScoped<IGroceryManager, DefaultGroceryManager>();
-        return service;
+        var assemblies = Directory
+            .GetFiles(AppDomain.CurrentDomain.BaseDirectory, "*.dll")
+            .Select(Assembly.LoadFrom)
+            .ToArray();
+
+        var moduleTypes = assemblies
+            .SelectMany(a => a.GetTypes())
+            .Where(
+                t =>
+                    typeof(IServiceRegistrationModule).IsAssignableFrom(t)
+                    && !t.IsInterface
+                    && !t.IsAbstract
+            );
+
+        foreach (var moduleType in moduleTypes)
+        {
+            var moduleInstance = Activator.CreateInstance(moduleType);
+            if (moduleInstance is not null)
+            {
+                var module = (IServiceRegistrationModule)moduleInstance;
+                module?.RegisterServices(services);
+            }
+        }
     }
 
     public static IServiceCollection AddGraphQl(this IServiceCollection service)
@@ -26,7 +46,7 @@ public static class GraphQlDemoServiceExtension
             .AddGraphQLServer()
             .AddMutationType<Mutation>()
             .AddTypeExtension<ProductMutation>()
-            .AddTypeExtension<GroceryMutation>()  
+            .AddTypeExtension<GroceryMutation>()
             .AddQueryType<Query>()
             .AddProjections()
             .AddFiltering()
