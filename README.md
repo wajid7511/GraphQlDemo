@@ -48,6 +48,12 @@ This project demonstrates the implementation of a GraphQL API using ASP.NET Core
       ```
 3. **Configuration**
 Database Connection: Ensure your SQL database connection string is correctly configured in appsettings.json.
+a) **Add Migration**
+{nameof Migration} Replace with migration name 
+dotnet ef migrations add {nameof Migration} --context GraphQlDatabaseContext --output-dir Migrations --project ../Data/Database/GraphQl.Database.csproj
+b) **Update Database**
+dotnet ef database update --startup-project ../../GraphQlDemo
+
 4. **Usage**
 Open your browser and navigate to https://localhost:7104/graphql/ to interact with the GraphQL API. 
 Use the GraphQL Playground or any GraphQL client to execute queries and mutations.
