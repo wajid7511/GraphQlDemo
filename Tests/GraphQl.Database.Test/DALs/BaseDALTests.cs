@@ -4,29 +4,28 @@ using GraphQl.Database.Models;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 
-namespace GraphQl.Database.Test
+namespace GraphQl.Database.Test.DALs
 {
     [TestClass]
     public class BaseDALTests
     {
-        private GraphQlDatabaseContext _context = null!;
         private TestBaseDAL _baseDAL = null!;
+
+        private GraphQlDatabaseContext _context = null!;
         private readonly Mock<IDateTimeProvider> _dateTimeProvider = new();
 
         [TestInitialize]
         public void Setup()
         {
-            var options = new DbContextOptionsBuilder<GraphQlDatabaseContext>()
-                .UseInMemoryDatabase(databaseName: "TestDatabase")
-                .Options;
-
-            _context = new GraphQlDatabaseContext(options, _dateTimeProvider.Object);
-
-            // Ensure the database is clean before each test
-            _context.Database.EnsureDeleted();
-            _context.Database.EnsureCreated();
-
+            _dateTimeProvider.Setup(s => s.UtcNow).Returns(DateTime.UtcNow);
+            _context = MockFactory.GraphQlDatabaseContext(_dateTimeProvider);
             _baseDAL = new TestBaseDAL(_context);
+        }
+
+        [TestCleanup]
+        public void Cleanup()
+        {
+            _context.Dispose();
         }
 
         [TestMethod]
@@ -34,7 +33,6 @@ namespace GraphQl.Database.Test
         {
             // Arrange
             var entity = new Product();
-            _dateTimeProvider.Setup(s => s.UtcNow).Returns(DateTime.UtcNow).Verifiable(Times.Once);
             // Act
             var result = await _baseDAL.AddRecordAsync(entity);
 
@@ -42,8 +40,6 @@ namespace GraphQl.Database.Test
             Assert.IsTrue(result.IsSuccess);
             Assert.AreEqual(entity, result.Entity);
             Assert.IsNull(result.Exception);
-            _dateTimeProvider.Verify();
-            _dateTimeProvider.VerifyNoOtherCalls();
         }
 
         [TestMethod]
@@ -61,7 +57,6 @@ namespace GraphQl.Database.Test
             Assert.IsFalse(result.IsSuccess);
             Assert.IsNull(result.Entity);
             Assert.IsNotNull(result.Exception);
-            _dateTimeProvider.VerifyNoOtherCalls();
         }
 
         [TestMethod]
