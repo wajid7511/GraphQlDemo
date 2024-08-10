@@ -29,8 +29,8 @@ This project demonstrates the implementation of a GraphQL API using ASP.NET Core
 ### Queries
 
 1. **GetProducts**
-   - Retrieves a IQueryable of products with pagination support.
-   - Output: IQueryable of `Product` types.
+   - Retrieves a list of products with pagination support.
+   - Output: List of `Product` types.
    - Pagination: Uses `UseOffsetPaging` to handle page navigation with `pageInfo` that includes `hasNextPage` and `hasPreviousPage`.
 
 ## Installation
@@ -39,73 +39,42 @@ This project demonstrates the implementation of a GraphQL API using ASP.NET Core
    ```bash
    git clone <repository-url>
    cd <project-directory>
-Restore Dependencies
+2. **Restore Dependencies**
 
-bash
-Copy code
-dotnet restore
-Run the Application
-
-bash
-Copy code
-dotnet run
-Access GraphQL Playground
-
-Open your browser and navigate to https://localhost:7104/graphql/ to interact with the GraphQL API.
-Configuration
+      ```bash 
+      dotnet restore
+      Run the Application
+      dotnet run
+      ```
+3. **Configuration**
 Database Connection: Ensure your SQL database connection string is correctly configured in appsettings.json.
-Usage
+4. **Usage**
+Open your browser and navigate to https://localhost:7104/graphql/ to interact with the GraphQL API. 
 Use the GraphQL Playground or any GraphQL client to execute queries and mutations.
-For example, to add a new grocery, use the AddGrocery mutation with the required input fields.
-Example Queries
-Add Grocery Mutation
-graphql
-Copy code
-mutation AddGrocery {
-    addGrocery(rquest: { name: "Madinah 1" }) {
-        id
-        name
-        createdOn
-        lastUpdateTime
-    }
-}
 
-Add Product to Grocery Mutation
-graphql
-Copy code
-mutation AddProduct {
-    addProduct(
-        rquest: {
-            productMame: "Fresh Milk 1"
-            productImageUrl: "https://unsplash.com/photos/164_6wVEHfINULL"
-            groceryId: 5
-        }
-    ) {
-        id
-        name
-        productImageUrl
-        groceryId
-        createdOn
-        lastUpdateTime
-        grocery {
+3. **Example Queries**
+For example, to add a new grocery, use the AddGrocery mutation with the required input fields.
+a) **Add Grocery**
+    ```
+        mutation AddGrocery {
+          addGrocery(rquest: { name: "Madinah 1" }) {
             id
             name
             createdOn
             lastUpdateTime
+          }
         }
-    }
-}
-Get Products Query
-graphql
-Copy code
-query Products {
-    products(skip: 0, take: 10) {
-        totalCount
-        pageInfo {
-            hasNextPage
-            hasPreviousPage
-        }
-        items {
+    ```
+    b) **Add Product to Grocery Mutation**
+    ```
+        mutation AddProduct {
+          addProduct(
+            rquest: {
+              productMame: "Fresh Milk 1"
+              productImageUrl: "https://unsplash.com/photos/164_6wVEHfINULL"
+              groceryId: 5
+            }
+          ) {
             id
             name
             productImageUrl
@@ -113,20 +82,46 @@ query Products {
             createdOn
             lastUpdateTime
             grocery {
-                id
-                name
-                createdOn
-                lastUpdateTime
+              id
+              name
+              createdOn
+              lastUpdateTime
             }
+          }
         }
+    ``` 
+    c) **Get Products Query** 
+    ```
+    query Products {
+      products(skip: 0, take: 10) {
+        totalCount
+        pageInfo {
+          hasNextPage
+          hasPreviousPage
+        }
+        items {
+          id
+          name
+          productImageUrl
+          groceryId
+          createdOn
+          lastUpdateTime
+          grocery {
+            id
+            name
+            createdOn
+            lastUpdateTime
+          }
+        }
+      }
     }
-}
+    ```
 
-Contribution
+## Contribution
 Feel free to fork the repository and submit pull requests with improvements or new features.
 
-License
+## License
 This project is licensed under the MIT License. See the LICENSE file for details.
 
-Contact
-For any questions or feedback, please contact email2wajidkhan@gmail.com, Phone Number +971566290465.
+## Contact
+For any questions or feedback, please contact email2wajidkhan@gmail.com, Phone Number: +971566290465.
