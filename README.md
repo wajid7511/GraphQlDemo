@@ -61,14 +61,16 @@ This project demonstrates the implementation of a GraphQL API using ASP.NET Core
       dotnet restore
       ```
 3. **Configuration**
-Database Connection: Ensure your SQL database connection string is correctly configured in appsettings.json.
+Database Connection: Ensure your SQL database connection string is correctly configured in appsettings.json or appsettings.development.json.
+ 
+   **Note** Open Terminal should be open GraphQlDemo folder not Project 
 
-    1.  **Add Migration** "nameof Migration Replace with migration name" 
+   1.  **Add Migration** "nameof Migration Replace with migration name" 
            ```bash
-           dotnet ef migrations add {nameof Migration} --context GraphQlDatabaseContext --output-dir Migrations --project ../Data/Database/GraphQl.Database.csproj```
+           dotnet ef migrations add PriceInProduct --context GraphQlDatabaseContext --output-dir Migrations --project Data/Database/GraphQl.Database.csproj```
    2. **Update Database**
         ```bash
-        dotnet ef database update --startup-project ../../GraphQlDemo```
+        dotnet ef database update --startup-project GraphQlDemo```
 4. **Run Application**
       ```bash  
       dotnet run

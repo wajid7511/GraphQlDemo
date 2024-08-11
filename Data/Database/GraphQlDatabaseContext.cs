@@ -7,7 +7,10 @@ namespace GraphQl.Database
 {
     public class GraphQlDatabaseContext : DbContext
     {
-        private readonly IDateTimeProvider _dateTimeProvider;
+        private readonly IDateTimeProvider _dateTimeProvider = null!;
+
+        public GraphQlDatabaseContext(DbContextOptions<GraphQlDatabaseContext> options)
+            : base(options) { }
 
         public GraphQlDatabaseContext(
             DbContextOptions<GraphQlDatabaseContext> options,
