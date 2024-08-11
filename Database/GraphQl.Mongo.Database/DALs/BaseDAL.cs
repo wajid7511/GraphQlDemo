@@ -1,81 +1,86 @@
 using System.Linq.Expressions;
-using GraphQl.Abstractions;
 using GraphQl.Mongo.Database.Models;
-using Microsoft.AspNetCore.Razor.TagHelpers;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 
 namespace GraphQl.Mongo.Database.DALs;
 
-public class BaseDAL<T>
-    where T : DbBaseModel
+public class BaseDAL
 {
-    private readonly IMongoCollection<T> _collection;
+    protected readonly IMongoDatabase _database;
+    private readonly IDbBaseModelFactory _modelFactory;
 
-    private readonly IDateTimeProvider _dateTimeProvider;
-
-    public BaseDAL(
-        IMongoDatabase database,
-        IDateTimeProvider dateTimeProvider,
-        string collectionName
-    )
+    public BaseDAL(IMongoDatabase database, IDbBaseModelFactory modelFactory)
     {
-        _collection = database.GetCollection<T>(collectionName);
-        _dateTimeProvider =
-            dateTimeProvider ?? throw new ArgumentNullException(nameof(dateTimeProvider));
+        _database = database;
+        _modelFactory = modelFactory ?? throw new ArgumentNullException(nameof(modelFactory));
     }
 
-    // Create
-    protected async ValueTask<T?> InsertOneAsync(T entity)
+    // Common Insert Method
+    protected async Task InsertOneAsync<T>(IMongoCollection<T> collection, T entity)
+        where T : class
     {
         try
         {
-            entity.CreatedOn = _dateTimeProvider.UtcNow;
-            await _collection.InsertOneAsync(entity);
-            return entity; // Return the inserted entity
+            if (entity is DbBaseModel dbBaseModel)
+            {
+                _modelFactory.Initialize(dbBaseModel, false);
+            }
+            await collection.InsertOneAsync(entity);
         }
         catch (Exception ex)
         {
             Console.WriteLine(ex.ToString());
-            return null;
         }
     }
 
-    // Read (by Id)
-    protected async ValueTask<T> GetByIdAsync(Guid id)
+    // Common Read Method by Id
+    protected async Task<T?> GetByIdAsync<T>(IMongoCollection<T> collection, Guid id)
+        where T : class
     {
-        return await _collection.Find(Builders<T>.Filter.Eq("Id", id)).FirstOrDefaultAsync();
+        return await collection.Find(Builders<T>.Filter.Eq("Id", id)).FirstOrDefaultAsync();
     }
 
-    // Read (all)
-    protected async ValueTask<List<T>> GetAllAsync()
+    // Common Read Method (All)
+    protected async Task<List<T>> GetAllAsync<T>(IMongoCollection<T> collection)
+        where T : class
     {
-        return await _collection.Find(_ => true).ToListAsync();
+        return await collection.Find(_ => true).ToListAsync();
     }
 
-    // Update
-    protected async ValueTask UpdateAsync(Guid id, T updatedEntity)
+    // Common Update Method
+    protected async Task UpdateAsync<T>(IMongoCollection<T> collection, Guid id, T updatedEntity)
+        where T : class
     {
-        updatedEntity.LastUpdateTime = _dateTimeProvider.UtcNow;
-        await _collection.ReplaceOneAsync(Builders<T>.Filter.Eq("Id", id), updatedEntity);
+        if (updatedEntity is DbBaseModel dbBaseModel)
+        {
+            _modelFactory.Initialize(dbBaseModel, true);
+        }
+        await collection.ReplaceOneAsync(Builders<T>.Filter.Eq("Id", id), updatedEntity);
     }
 
-    // Delete
-    protected async ValueTask DeleteAsync(Guid id)
+    // Common Delete Method
+    protected async Task DeleteAsync<T>(IMongoCollection<T> collection, Guid id)
+        where T : class
     {
-        await _collection.DeleteOneAsync(Builders<T>.Filter.Eq("Id", id));
+        await collection.DeleteOneAsync(Builders<T>.Filter.Eq("Id", id));
     }
 
-    // Method to filter based on a predicate
-    public async ValueTask<List<T>> FindByPredicateAsync(Expression<Func<T, bool>> predicate)
+    // Common Find by Predicate
+    protected async Task<List<T>> FindByPredicateAsync<T>(
+        IMongoCollection<T> collection,
+        Expression<Func<T, bool>> predicate
+    )
+        where T : class
     {
         var filter = Builders<T>.Filter.Where(predicate);
-        return await _collection.Find(filter).ToListAsync();
+        return await collection.Find(filter).ToListAsync();
     }
 
-    // Method to get all IQueryable<Customer> directly from MongoDB
-    protected IMongoQueryable<T> GetAllIQueryable()
+    // Common IQueryable Method
+    protected IMongoQueryable<T> GetAllIQueryable<T>(IMongoCollection<T> collection)
+        where T : class
     {
-        return _collection.AsQueryable();
+        return collection.AsQueryable();
     }
 }

@@ -1,5 +1,3 @@
-using System;
-
 namespace GraphQlDemo.API.Models;
 
 public class CustomerInput

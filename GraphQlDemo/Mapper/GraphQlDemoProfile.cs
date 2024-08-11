@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using GraphQl.Abstractions;
+using GraphQl.Abstractions.Customers.Dtos;
 using GraphQl.Database.Models;
 using GraphQl.Mongo.Database.Models;
 using GraphQlDemo.API.Models;
@@ -22,6 +23,10 @@ public class GraphQlDemoProfile : Profile
         CreateMap<Customer, CustomerDto>();
         CreateMap<Customer, CustomerSchema>();
         CreateMap<CustomerDto, CustomerSchema>();
+        CreateMap<CustomerOrder, CustomerOrderDto>();
+        CreateMap<CustomerOrderItem, CustomerOrderItemDto>();
+        CreateMap<CustomerOrderDto, CustomerOrderSchema>();
+        CreateMap<CustomerOrderItemDto, CustomerOrderItemSchema>();
         CreateMap<CustomerInput, Customer>()
             .ForMember(m => m.Id, opt => opt.Ignore())
             .ForMember(m => m.CreatedOn, opt => opt.Ignore())

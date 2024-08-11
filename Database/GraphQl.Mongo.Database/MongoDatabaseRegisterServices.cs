@@ -15,6 +15,7 @@ public class MongoDatabaseRegisterServices : IServiceRegistrationModule
     {
         services.Configure<MongoDbOptions>(configuration.GetSection("MongoConfigurations"));
 
+        services.AddSingleton<IDbBaseModelFactory, DbBaseModelFactory>();
         // Register IMongoDatabase
         services.AddSingleton(sp =>
         {
