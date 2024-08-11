@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project demonstrates the implementation of a GraphQL API using ASP.NET Core and HotChocolate, with a SQL database backend. The project employs a Code First approach to define the GraphQL schema and uses AutoMapper to map database entities to the GraphQL schema.
+This project demonstrates the implementation of a GraphQL API using ASP.NET Core and HotChocolate, with a SQL & Mongo database backend. The project employs a Code First approach to define the GraphQL schema and uses AutoMapper to map database entities to the GraphQL schema.
 
 ## Features
 
@@ -19,18 +19,34 @@ This project demonstrates the implementation of a GraphQL API using ASP.NET Core
 1. **AddGrocery**
    - Adds a new grocery to the database.
    - Input: `GroceryInput` type.
-   - Output: `Grocery` type.
+   - Output: `GrocerySchema` type.
 
 2. **AddProductToGrocery**
    - Adds a product to a specified grocery.
-   - Input: `ProductToGroceryInput` type.
-   - Output: `Product` type.
+   - Input: `ProductInput` type.
+   - Output: `ProductSchema` type.
+
+3. **AddProductToGrocery**
+  - Adds a Customer .
+  - Input: `CustomerInput` type.
+  - Output: `CustomerSchema` type.
 
 ### Queries
 
 1. **GetProducts**
    - Retrieves a list of products with pagination support.
-   - Output: List of `Product` types.
+   - Output: List of `ProductSchema` types.
+   - Pagination: Uses `UseOffsetPaging` to handle page navigation with `pageInfo` that includes `hasNextPage` and `hasPreviousPage`.
+
+2. **GetGroceries**
+   - Retrieves a list of groceries with pagination support.
+   - Output: List of `GrocerySchema` types.
+   - Pagination: Uses `UseOffsetPaging` to handle page navigation with `pageInfo` that includes `hasNextPage` and `hasPreviousPage`.
+
+
+3. **GetCustomers**
+   - Retrieves a list of customers with pagination support.
+   - Output: List of `CustomerSchema` types.
    - Pagination: Uses `UseOffsetPaging` to handle page navigation with `pageInfo` that includes `hasNextPage` and `hasPreviousPage`.
 
 ## Installation
@@ -62,6 +78,7 @@ Use the GraphQL Playground or any GraphQL client to execute queries and mutation
 
 3. **Example Queries**
 For example, to add a new grocery, use the AddGrocery mutation with the required input fields.
+
 a) **Add Grocery**
     ```
         mutation AddGrocery {
