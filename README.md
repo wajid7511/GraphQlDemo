@@ -65,84 +65,19 @@ This project demonstrates the implementation of a GraphQL API using ASP.NET Core
 3. **Configuration**
 Database Connection: Ensure your SQL database connection string is correctly configured in appsettings.json.
 
-a) **Add Migration**
-{nameof Migration} Replace with migration name 
-dotnet ef migrations add {nameof Migration} --context GraphQlDatabaseContext --output-dir Migrations --project ../Data/Database/GraphQl.Database.csproj
-
-b) **Update Database**
-dotnet ef database update --startup-project ../../GraphQlDemo
+    1.  **Add Migration** "nameof Migration Replace with migration name" 
+           ```bash
+           dotnet ef migrations add {nameof Migration} --context GraphQlDatabaseContext --output-dir Migrations --project ../Data/Database/GraphQl.Database.csproj```
+   2. **Update Database**
+        ```bash
+        dotnet ef database update --startup-project ../../GraphQlDemo```
 
 4. **Usage**
 Open your browser and navigate to https://localhost:7104/graphql/ to interact with the GraphQL API. 
 Use the GraphQL Playground or any GraphQL client to execute queries and mutations.
 
-3. **Example Queries**
-For example, to add a new grocery, use the AddGrocery mutation with the required input fields.
-
-a) **Add Grocery**
-    ```
-        mutation AddGrocery {
-          addGrocery(rquest: { name: "Madinah 1" }) {
-            id
-            name
-            createdOn
-            lastUpdateTime
-          }
-        }
-    ```
-b) **Add Product to Grocery Mutation**
-    ```
-        mutation AddProduct {
-          addProduct(
-            rquest: {
-              productName: "Fresh Milk 1",
-              productImageUrl: "https://unsplash.com/photos/164_6wVEHfINULL",
-              groceryId: 5
-            }
-          ) {
-            id
-            name
-            productImageUrl
-            groceryId
-            createdOn
-            lastUpdateTime
-            grocery {
-              id
-              name
-              createdOn
-              lastUpdateTime
-            }
-          }
-        }
-    ``` 
-    c) **Get Products Query** 
-    ```
-    query Products {
-      products(skip: 0, take: 10) {
-        totalCount
-        pageInfo {
-          hasNextPage
-          hasPreviousPage
-        }
-        items {
-          id
-          name
-          productImageUrl
-          groceryId
-          createdOn
-          lastUpdateTime
-          grocery {
-            id
-            name
-            createdOn
-            lastUpdateTime
-          }
-        }
-      }
-    }
-    ```
-## Queries and Result Screen
-You can find the example query and Screenshots in Queries_Result
+## Queries and Result Screenshots
+You can find the example query and Screenshots in Queries_Result Folder
 
 ## Contribution
 Feel free to fork the repository and submit pull requests with improvements or new features.
