@@ -21,12 +21,12 @@ This project demonstrates the implementation of a GraphQL API using ASP.NET Core
    - Input: `GroceryInput` type.
    - Output: `GrocerySchema` type.
 
-2. **AddProductToGrocery**
+2. **AddProducts**
    - Adds a product to a specified grocery.
    - Input: `ProductInput` type.
    - Output: `ProductSchema` type.
 
-3. **AddProductToGrocery**
+3. **AddCustomer**
   - Adds a Customer .
   - Input: `CustomerInput` type.
   - Output: `CustomerSchema` type.
