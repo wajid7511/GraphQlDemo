@@ -17,7 +17,10 @@ public class DefaultCustomerManger : ICustomerManger
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
     }
 
-    public async ValueTask<CustomerDto?> AddCustomerAsync(CustomerInput input)
+    public async ValueTask<CustomerDto?> AddCustomerAsync(
+        CustomerInput input,
+        CancellationToken cancellationToken = default
+    )
     {
         ArgumentNullException.ThrowIfNull(input);
         var customer = _mapper.Map<Customer>(input);

@@ -67,3 +67,34 @@ query Products {
         }
     }
 }
+
+--- in this query we have used Variables ---- 
+query Customers($name: String!) {
+    customers(where: { name: { contains: $name } }) {
+        totalCount
+        pageInfo {
+            hasNextPage
+            hasPreviousPage
+        }
+        items {
+            id
+            name
+            email
+            phoneNumber
+        }
+    }
+}
+
+
+query Groceries {
+    groceries {
+        totalCount
+        items {
+            id
+            name
+            createdOn
+            lastUpdateTime
+        }
+    }
+}
+

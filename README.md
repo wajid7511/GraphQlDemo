@@ -48,9 +48,11 @@ This project demonstrates the implementation of a GraphQL API using ASP.NET Core
       ```
 3. **Configuration**
 Database Connection: Ensure your SQL database connection string is correctly configured in appsettings.json.
+
 a) **Add Migration**
 {nameof Migration} Replace with migration name 
 dotnet ef migrations add {nameof Migration} --context GraphQlDatabaseContext --output-dir Migrations --project ../Data/Database/GraphQl.Database.csproj
+
 b) **Update Database**
 dotnet ef database update --startup-project ../../GraphQlDemo
 
@@ -71,13 +73,13 @@ a) **Add Grocery**
           }
         }
     ```
-    b) **Add Product to Grocery Mutation**
+b) **Add Product to Grocery Mutation**
     ```
         mutation AddProduct {
           addProduct(
             rquest: {
-              productName: "Fresh Milk 1"
-              productImageUrl: "https://unsplash.com/photos/164_6wVEHfINULL"
+              productName: "Fresh Milk 1",
+              productImageUrl: "https://unsplash.com/photos/164_6wVEHfINULL",
               groceryId: 5
             }
           ) {
@@ -122,6 +124,8 @@ a) **Add Grocery**
       }
     }
     ```
+## Queries and Result Screen
+You can find the example query and Screenshots in Queries_Result
 
 ## Contribution
 Feel free to fork the repository and submit pull requests with improvements or new features.

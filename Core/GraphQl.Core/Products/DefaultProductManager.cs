@@ -17,7 +17,10 @@ public class DefaultProductManager : IProductManager
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
     }
 
-    public async ValueTask<int> AddProductAsync(ProductInput input)
+    public async ValueTask<int> AddProductAsync(
+        ProductInput input,
+        CancellationToken cancellationToken = default
+    )
     {
         ArgumentNullException.ThrowIfNull(input, nameof(input));
         var product = _mapper.Map<Product>(input);

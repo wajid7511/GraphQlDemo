@@ -20,6 +20,7 @@ public class GraphQlDemoProfile : Profile
             .ForMember(m => m.Grocery, opt => opt.Ignore());
         CreateMap<Grocery, GrocerySchema>();
         CreateMap<Customer, CustomerDto>();
+        CreateMap<Customer, CustomerSchema>();
         CreateMap<CustomerDto, CustomerSchema>();
         CreateMap<CustomerInput, Customer>()
             .ForMember(m => m.Id, opt => opt.Ignore())

@@ -52,6 +52,9 @@ public static class GraphQlDemoServiceExtension
             .AddTypeExtension<GroceryMutation>()
             .AddTypeExtension<CustomerMutation>()
             .AddQueryType<Query>()
+            .AddTypeExtension<ProductQuery>()
+            .AddTypeExtension<GroceryQuery>()
+            .AddTypeExtension<CustomerQuery>()
             .AddProjections()
             .AddFiltering()
             .AddSorting();

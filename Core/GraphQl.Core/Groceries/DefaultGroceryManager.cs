@@ -16,7 +16,10 @@ public class DefaultGroceryManager : IGroceryManager
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
     }
 
-    public async ValueTask<int> AddGroceryAsync(GroceryInput input)
+    public async ValueTask<int> AddGroceryAsync(
+        GroceryInput input,
+        CancellationToken cancellationToken = default
+    )
     {
         ArgumentNullException.ThrowIfNull(input, nameof(input));
 

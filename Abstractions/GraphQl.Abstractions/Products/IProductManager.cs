@@ -4,5 +4,8 @@ namespace GraphQl.Abstractions;
 
 public interface IProductManager
 {
-    public ValueTask<int> AddProductAsync(ProductInput input);
+    public ValueTask<int> AddProductAsync(
+        ProductInput input,
+        CancellationToken cancellationToken = default
+    );
 }
