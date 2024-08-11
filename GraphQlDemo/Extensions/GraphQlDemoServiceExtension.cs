@@ -18,27 +18,38 @@ public static class GraphQlDemoServiceExtension
         ConfigurationManager configuration
     )
     {
-        var assemblies = Directory
-            .GetFiles(AppDomain.CurrentDomain.BaseDirectory, "*.dll")
-            .Select(Assembly.LoadFrom)
-            .ToArray();
-
-        var moduleTypes = assemblies
-            .SelectMany(a => a.GetTypes())
-            .Where(
-                t =>
-                    typeof(IServiceRegistrationModule).IsAssignableFrom(t)
-                    && !t.IsInterface
-                    && !t.IsAbstract
-            );
-
-        foreach (var moduleType in moduleTypes)
+        try
         {
-            var moduleInstance = Activator.CreateInstance(moduleType);
-            if (moduleInstance is not null)
+            var assemblies = Directory
+                .GetFiles(AppDomain.CurrentDomain.BaseDirectory, "*.dll")
+                .Select(Assembly.LoadFrom)
+                .ToArray();
+
+            var moduleTypes = assemblies
+                .SelectMany(a => a.GetTypes())
+                .Where(
+                    t =>
+                        typeof(IServiceRegistrationModule).IsAssignableFrom(t)
+                        && !t.IsInterface
+                        && !t.IsAbstract
+                );
+
+            foreach (var moduleType in moduleTypes)
             {
-                var module = (IServiceRegistrationModule)moduleInstance;
-                module?.RegisterServices(services, configuration);
+                var moduleInstance = Activator.CreateInstance(moduleType);
+                if (moduleInstance is not null)
+                {
+                    var module = (IServiceRegistrationModule)moduleInstance;
+                    module?.RegisterServices(services, configuration);
+                }
+            }
+        }
+        catch (ReflectionTypeLoadException ex)
+        {
+            Console.WriteLine("ReflectionTypeLoadException caught:");
+            foreach (var loaderException in ex.LoaderExceptions)
+            {
+                Console.WriteLine("Error:" + loaderException?.ToString() ?? "No Exception");
             }
         }
     }
