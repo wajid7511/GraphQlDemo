@@ -16,6 +16,7 @@ public class ProductSchemaTests : BaseGraphqlSchemaTests
             "productImageUrl",
             graphQlNameDictionary[nameof(ProductSchema.ProductImageUrl)]
         );
+        Assert.AreEqual("price", graphQlNameDictionary[nameof(ProductSchema.Price)]);
         Assert.AreEqual("groceryId", graphQlNameDictionary[nameof(ProductSchema.GroceryId)]);
         Assert.AreEqual("createdOn", graphQlNameDictionary[nameof(ProductSchema.CreatedOn)]);
         Assert.AreEqual(

@@ -27,7 +27,7 @@ namespace GraphQl.Database.Models
         public string ImageUrl { get; set; } = string.Empty;
 
         [Column("PriceAmount", TypeName = "decimal(9,2)")]
-        public int Price { get; set; }
+        public double Price { get; set; }
 
         [Required]
         [ForeignKey("Grocery")]

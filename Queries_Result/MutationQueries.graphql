@@ -1,14 +1,16 @@
 mutation AddProduct {
     addProduct(
         rquest: {
-            productMame: "Fresh Milk 1"
-            productImageUrl: "https://unsplash.com/photos/164_6wVEHfINULL"
+            productMame: "Fresh Milk 1",
+            productImageUrl: "https://unsplash.com/photos/164_6wVEHfINULL",
+            price: 105.0,
             groceryId: 5
         }
     ) {
         id
         name
         productImageUrl
+        price
         groceryId
         createdOn
         lastUpdateTime
@@ -55,6 +57,7 @@ query Products {
             id
             name
             productImageUrl
+            price
             groceryId
             createdOn
             lastUpdateTime
