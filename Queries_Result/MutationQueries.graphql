@@ -101,3 +101,26 @@ query Groceries {
     }
 }
 
+-- Add Order ------ 
+
+mutation AddCustomerOrder {
+    addCustomerOrder(
+        rquest: {
+            customerId: "ecf936f9-debb-4a3b-9009-009a77dc5088"
+            products: [{ id: 3, quantity: 2 }, { id: 2, quantity: 8 }]
+        }
+    ) {
+        id
+        customerId
+        orderDate
+        items { 
+            productId
+            name
+            imageUrl
+            groceryName
+            quantity
+            price
+        }
+    }
+}
+

@@ -2,15 +2,10 @@ using GraphQlDemo.Shared.Database;
 
 namespace GraphQl.Database.DAL;
 
-public abstract class BaseDAL
+public abstract class BaseDAL(GraphQlDatabaseContext databaseContext)
 {
-    private readonly GraphQlDatabaseContext _databaseContext;
-
-    public BaseDAL(GraphQlDatabaseContext databaseContext)
-    {
-        _databaseContext =
+    private readonly GraphQlDatabaseContext _databaseContext =
             databaseContext ?? throw new ArgumentNullException(nameof(databaseContext));
-    }
 
     protected async ValueTask<DbAddResult<T>> AddAsync<T>(T entity)
         where T : class

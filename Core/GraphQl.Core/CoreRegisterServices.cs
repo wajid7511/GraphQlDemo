@@ -10,7 +10,7 @@ public class CoreRegisterServices : IServiceRegistrationModule
     {
         services.AddScoped<IProductManager, DefaultProductManager>();
         services.AddScoped<IGroceryManager, DefaultGroceryManager>();
-        services.AddScoped<ICustomerManger, DefaultCustomerManger>();
+        services.AddScoped<ICustomerManager, DefaultCustomerManager>();
         services.AddSingleton<IDateTimeProvider, DefaultDateTimeProvider>();
     }
 }
