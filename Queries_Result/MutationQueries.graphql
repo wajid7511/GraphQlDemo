@@ -1,6 +1,6 @@
 mutation AddProduct {
     addProduct(
-        rquest: {
+        request: {
             productMame: "Fresh Milk 1",
             productImageUrl: "https://unsplash.com/photos/164_6wVEHfINULL",
             price: 105.0,
@@ -25,7 +25,7 @@ mutation AddProduct {
  
 
 mutation AddGrocery {
-    addGrocery(rquest: { name: "Madinah 1" }) {
+    addGrocery(request: { name: "Madinah 1" }) {
         id
         name
         createdOn
@@ -35,7 +35,7 @@ mutation AddGrocery {
 ---- Mongo Database
 mutation AddCustomer {
     addCustomer(
-        rquest: { name: "Wajid1", email: "test1@gmail.com", phoneNumber: "+971566290461" }
+        request: { name: "Wajid1", email: "test1@gmail.com", phoneNumber: "+971566290461" }
     ) {
         id
         name

@@ -31,7 +31,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphQlDemo.API.Models.Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphQl.Core.Test", "Tests\GraphQl.Core.Test\GraphQl.Core.Test.csproj", "{D2A51E8E-13FF-48AB-A58D-AD1182DDD32A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphQl.Mongo.Database", "Database\GraphQl.Mongo.Database\GraphQl.Mongo.Database.csproj", "{194D6C39-D428-4C96-A398-62FAFB428DB1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphQl.Mongo.Database", "Data\GraphQl.Mongo.Database\GraphQl.Mongo.Database.csproj", "{194D6C39-D428-4C96-A398-62FAFB428DB1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{70D1B4CF-D5E0-4D71-AEAD-A023457FB487}"
 EndProject
