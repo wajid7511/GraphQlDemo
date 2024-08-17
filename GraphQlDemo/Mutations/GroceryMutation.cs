@@ -8,13 +8,13 @@ namespace GraphQlDemo;
 public class GroceryMutation
 {
     public async ValueTask<IQueryable<GrocerySchema>> AddGrocery(
-        GroceryInput rquest,
+        GroceryInput request,
         [Service] GraphQlDatabaseContext databaseContext,
         [Service] IMapper mapper,
         [Service] IGroceryManager manager
     )
     {
-        var id = await manager.AddGroceryAsync(rquest);
+        var id = await manager.AddGroceryAsync(request);
         if (id > 0)
         {
             var query = databaseContext.Groceries.Where(g => g.Id == id);

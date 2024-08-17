@@ -8,12 +8,12 @@ namespace GraphQlDemo;
 public class CustomerMutation
 {
     public async ValueTask<CustomerSchema?> AddCustomer(
-        CustomerInput rquest,
+        CustomerInput request,
         [Service] ICustomerManager manager,
         [Service] IMapper mapper
     )
     {
-        var result = await manager.AddCustomerAsync(rquest);
+        var result = await manager.AddCustomerAsync(request);
         return mapper.Map<CustomerSchema>(result);
     }
 
