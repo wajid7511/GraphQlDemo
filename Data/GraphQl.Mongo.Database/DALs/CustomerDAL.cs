@@ -8,7 +8,7 @@ using MongoDB.Driver.Linq;
 namespace GraphQl.Mongo.Database.DALs;
 
 public class CustomerDAL(
-    IMongoDatabase database, 
+    IMongoDatabase database,
     IDbBaseModelFactory modelFactory,
     IOptions<MongoDbOptions> mongoDbOptions
     ) : BaseDAL(database, modelFactory)
@@ -19,16 +19,20 @@ public class CustomerDAL(
     // Create
     public async ValueTask<DbAddResult<Customer>> CreateAsync(Customer customer)
     {
-        await InsertOneAsync(_customerCollection,customer);
+        await InsertOneAsync(_customerCollection, customer);
         var isSuccess = Guid.TryParse(customer.Id.ToString(), out Guid resultId);
         return new DbAddResult<Customer>(isSuccess, customer);
     }
 
     public async ValueTask<DbAddResult<CustomerOrder>> CreateOrderAsync(CustomerOrder customer)
     {
-        await InsertOneAsync(_orderCollection,customer);
+        await InsertOneAsync(_orderCollection, customer);
         var isSuccess = Guid.TryParse(customer.Id.ToString(), out Guid resultId);
         return new DbAddResult<CustomerOrder>(isSuccess, customer);
+    }
+    public async ValueTask<CustomerOrder?> GetCustomerOrderByIdAsync(Guid id)
+    {
+        return await base.GetByIdAsync(_orderCollection, id);
     }
 
     public IMongoQueryable<Customer> GetCustomersAsync()

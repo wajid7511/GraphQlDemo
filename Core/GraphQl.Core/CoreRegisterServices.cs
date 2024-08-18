@@ -11,6 +11,5 @@ public class CoreRegisterServices : IServiceRegistrationModule
         services.AddScoped<IProductManager, DefaultProductManager>();
         services.AddScoped<IGroceryManager, DefaultGroceryManager>();
         services.AddScoped<ICustomerManager, DefaultCustomerManager>();
-        services.AddSingleton<IDateTimeProvider, DefaultDateTimeProvider>();
     }
 }

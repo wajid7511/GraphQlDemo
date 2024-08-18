@@ -2,10 +2,11 @@
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.RegisterIServicesRegisterModules(builder.Configuration);
+builder.Services.AddGraphQlDemoOptions(builder.Configuration);
+builder.Services.RegisterGraphQlDemoIServicesRegisterModules(builder.Configuration);
 builder.Services.AddDatabase(builder.Configuration);
-builder.Services.AddGraphQl();
-builder.Services.AddMapper();
+builder.Services.AddGraphQlDemoGraphQl();
+builder.Services.AddGraphQlDemoMapper();
 
 builder.Services.AddControllers();
 
@@ -45,10 +46,6 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-app.UseRouting()
-    .UseEndpoints(endpoints =>
-    {
-        endpoints.MapGraphQL();
-    });
+app.MapGraphQL("/graphql");
 
 app.Run();

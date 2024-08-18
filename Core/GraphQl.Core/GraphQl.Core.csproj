@@ -4,7 +4,8 @@
     <ProjectReference Include="..\..\Abstractions\GraphQl.Abstractions\GraphQl.Abstractions.csproj" />
     <ProjectReference Include="..\..\GraphQlDemo.API.Models\GraphQlDemo.API.Models.csproj" />
     <ProjectReference Include="..\..\Data\Database\GraphQl.Database.csproj" />
-    <ProjectReference Include="..\..\Data\GraphQl.Mongo.Database\GraphQl.Mongo.Database.csproj" /> 
+    <ProjectReference Include="..\..\Data\GraphQl.Mongo.Database\GraphQl.Mongo.Database.csproj" />
+    <ProjectReference Include="..\..\Messaging\Producer.RabbitMq\Producer.RabbitMq.csproj" /> 
   </ItemGroup>
 
   <ItemGroup>
@@ -15,10 +16,5 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-  </PropertyGroup>
-
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <OutputPath>..\..\GraphQlDemo\bin\Debug</OutputPath>
-    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
 </Project>

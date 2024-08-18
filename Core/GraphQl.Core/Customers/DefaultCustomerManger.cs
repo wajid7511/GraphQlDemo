@@ -6,29 +6,25 @@ using GraphQl.Database.Models;
 using GraphQl.Mongo.Database.DALs;
 using GraphQl.Mongo.Database.Models;
 using GraphQlDemo.API.Models;
+using GraphQlDemo.Shared.Messaging;
 
 namespace GraphQl.Core
 {
-    public class DefaultCustomerManager : ICustomerManager
+    public class DefaultCustomerManager(
+        CustomerDAL customerDAL,
+        ProductDAL productDAL,
+        IMapper mapper,
+        IDateTimeProvider dateTimeProvider,
+        IMessageProducer messageProducer
+        ) : ICustomerManager
     {
-        private readonly CustomerDAL _customerDAL;
-        private readonly ProductDAL _productDAL;
-        private readonly IMapper _mapper;
-        private readonly IDateTimeProvider _dateTimeProvider;
-
-        public DefaultCustomerManager(
-            CustomerDAL customerDAL,
-            ProductDAL productDAL,
-            IMapper mapper,
-            IDateTimeProvider dateTimeProvider
-        )
-        {
-            _customerDAL = customerDAL ?? throw new ArgumentNullException(nameof(customerDAL));
-            _productDAL = productDAL ?? throw new ArgumentNullException(nameof(productDAL));
-            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
-            _dateTimeProvider =
+        private readonly CustomerDAL _customerDAL = customerDAL ?? throw new ArgumentNullException(nameof(customerDAL));
+        private readonly ProductDAL _productDAL = productDAL ?? throw new ArgumentNullException(nameof(productDAL));
+        private readonly IMapper _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+        private readonly IDateTimeProvider _dateTimeProvider =
                 dateTimeProvider ?? throw new ArgumentNullException(nameof(dateTimeProvider));
-        }
+        private readonly IMessageProducer _messageProducer =
+                messageProducer ?? throw new ArgumentNullException(nameof(messageProducer));
 
         public async ValueTask<CustomerDto?> AddCustomerAsync(
             CustomerInput input,
@@ -61,7 +57,7 @@ namespace GraphQl.Core
                 OrderDate = _dateTimeProvider.UtcNow,
                 Items = await GetProductsDetailsAsync(input, cancellationToken)
             };
-            if(customerOrder.Items.Count == 0)
+            if (customerOrder.Items.Count == 0)
             {
                 return null;
             }
@@ -70,6 +66,11 @@ namespace GraphQl.Core
 
             if (orderResult.IsSuccess && orderResult.Entity != null)
             {
+                _messageProducer.SendMessage(new MessageDto()
+                {
+                    ReferenceId = orderResult.Entity.Id.ToString(),
+                    MessageType = MessageType.Order
+                });
                 return _mapper.Map<CustomerOrderDto>(orderResult.Entity);
             }
 
@@ -87,7 +88,7 @@ namespace GraphQl.Core
                 p => productIds.Contains(p.Id),
                 int.MaxValue,
                 0,
-                true 
+                true
             );
 
             if (!productResult.IsSuccess || productIds.Count != (productResult.Data?.Count ?? 0))
