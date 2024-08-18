@@ -1,19 +1,29 @@
 ﻿using System.Reflection;
 using GraphQl.Abstractions;
 using GraphQl.Database;
+using GraphQlDemo.Shared.Options;
 using Microsoft.EntityFrameworkCore;
 
 namespace GraphQlDemo;
 
 public static class GraphQlDemoServiceExtension
 {
-    public static IServiceCollection AddMapper(this IServiceCollection service)
+    public static IServiceCollection AddGraphQlDemoMapper(this IServiceCollection service)
     {
         service.AddAutoMapper(typeof(GraphQlDemoProfile));
         return service;
     }
 
-    public static void RegisterIServicesRegisterModules(
+    public static IServiceCollection AddGraphQlDemoOptions(
+        this IServiceCollection service,
+        IConfiguration configuration
+    )
+    {
+        service.Configure<RabbitMqOptions>(configuration.GetSection(RabbitMqOptions.CONFIG_PATH));
+        return service;
+    }
+
+    public static void RegisterGraphQlDemoIServicesRegisterModules(
         this IServiceCollection services,
         ConfigurationManager configuration
     )
@@ -54,7 +64,7 @@ public static class GraphQlDemoServiceExtension
         }
     }
 
-    public static IServiceCollection AddGraphQl(this IServiceCollection service)
+    public static IServiceCollection AddGraphQlDemoGraphQl(this IServiceCollection service)
     {
         service
             .AddGraphQLServer()

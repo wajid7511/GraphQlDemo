@@ -34,7 +34,9 @@
     </ProjectReference> 
     <ProjectReference Include="..\Abstractions\GraphQl.Abstractions\GraphQl.Abstractions.csproj" /> 
     <ProjectReference Include="../Data/GraphQl.Mongo.Database/GraphQl.Mongo.Database.csproj" /> 
-    <ProjectReference Include="..\Core\GraphQl.Core\GraphQl.Core.csproj" />
+    <ProjectReference Include="..\Core\GraphQl.Core\GraphQl.Core.csproj" /> 
+    <ProjectReference Include="..\Messaging\Producer.RabbitMq\Producer.RabbitMq.csproj" /> 
+    <ProjectReference Include="..\Common\GraphQl.Common\GraphQl.Common.csproj" />  
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ObjectTypes\" />

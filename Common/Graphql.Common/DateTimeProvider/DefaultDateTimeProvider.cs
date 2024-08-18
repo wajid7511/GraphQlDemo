@@ -1,6 +1,6 @@
 using GraphQl.Abstractions;
 
-namespace GraphQl.Core;
+namespace GraphQl.Common;
 
 public class DefaultDateTimeProvider : IDateTimeProvider
 {

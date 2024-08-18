@@ -1,6 +1,6 @@
 using GraphQl.Abstractions;
 
-namespace GraphQl.Core.Test;
+namespace GraphQl.Common.Test;
 
 [TestClass]
 public class DefaultDateTimeProviderTests
