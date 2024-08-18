@@ -45,10 +45,6 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-app.UseRouting()
-    .UseEndpoints(endpoints =>
-    {
-        endpoints.MapGraphQL();
-    });
+app.MapGraphQL("/graphql");
 
 app.Run();

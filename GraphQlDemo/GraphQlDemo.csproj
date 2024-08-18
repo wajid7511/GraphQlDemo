@@ -33,7 +33,8 @@
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference> 
     <ProjectReference Include="..\Abstractions\GraphQl.Abstractions\GraphQl.Abstractions.csproj" /> 
-    <ProjectReference Include="../Data/GraphQl.Mongo.Database/GraphQl.Mongo.Database.csproj" />
+    <ProjectReference Include="../Data/GraphQl.Mongo.Database/GraphQl.Mongo.Database.csproj" /> 
+    <ProjectReference Include="..\Core\GraphQl.Core\GraphQl.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ObjectTypes\" />

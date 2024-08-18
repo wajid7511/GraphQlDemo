@@ -16,9 +16,4 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <OutputPath>..\..\GraphQlDemo\bin\Debug</OutputPath>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
 </Project>
