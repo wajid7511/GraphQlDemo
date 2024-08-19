@@ -9,7 +9,7 @@ COPY ["Core/GraphQl.Core/GraphQl.Core.csproj", "Core/GraphQl.Core/"]
 COPY ["Abstractions/GraphQl.Abstractions/GraphQl.Abstractions.csproj", "Abstractions/GraphQl.Abstractions/"]
 COPY ["GraphQlDemo.API.Models/GraphQlDemo.API.Models.csproj", "GraphQlDemo.API.Models/"]
 COPY ["Shared/GraphQlDemo.Shared/GraphQlDemo.Shared.csproj", "Shared/GraphQlDemo.Shared/"]
-COPY ["Common/GraphQlDemo.Common/GraphQlDemo.Common.csproj", "Common/GraphQlDemo.Common/"]
+COPY ["Common/GraphQl.Common/GraphQl.Common.csproj", "Common/GraphQl.Common/"]
 COPY ["Messaging/Producer.RabbitMq/Producer.RabbitMq.csproj", "Messaging/Producer.RabbitMq/"]
 COPY ["Data/Database/GraphQl.Database.csproj", "Data/Database/"]
 COPY ["Data/GraphQl.Mongo.Database/GraphQl.Mongo.Database.csproj", "Data/GraphQl.Mongo.Database/"]
@@ -17,7 +17,7 @@ COPY ["Tests/GraphQl.Core.Test/GraphQl.Core.Test.csproj", "Tests/GraphQl.Core.Te
 COPY ["Tests/GraphQl.Database.Test/GraphQl.Database.Test.csproj", "Tests/GraphQl.Database.Test/"]
 COPY ["Tests/GraphQlDemo.API.Models.Test/GraphQlDemo.API.Models.Test.csproj", "Tests/GraphQlDemo.API.Models.Test/"]
 COPY ["Tests/GraphQlDemo.Test/GraphQlDemo.Test.csproj", "Tests/GraphQlDemo.Test/"]
-COPY ["Tests/GraphQlDemo.Common.Test/GraphQlDemo.Common.Test.csproj", "Tests/GraphQlDemo.Common.Test/"]
+COPY ["Tests/GraphQl.Common.Test/GraphQl.Common.Test.csproj", "Tests/GraphQl.Common.Test/"]
 
 # Restore dependencies
 RUN dotnet restore
