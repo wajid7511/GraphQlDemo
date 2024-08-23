@@ -1,0 +1,41 @@
+trigger:
+- development
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  buildConfiguration: 'Release'
+
+steps:
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '8.0.8'  # Adjust to your .NET SDK version
+    installationPath: $(Agent.ToolsDirectory)/dotnet
+
+- task: NuGetToolInstaller@1
+
+- task: NuGetAuthenticate@1
+
+- script: |
+    projects=(
+      "Core/GraphQl.Core/GraphQl.Core.csproj"
+      "Abstractions/GraphQl.Abstractions/GraphQl.Abstractions.csproj"
+    )
+
+    for proj in "${projects[@]}"; do
+      echo "Processing project: $proj"
+      
+      dotnet restore "$proj"
+      dotnet build "$proj" --configuration $(buildConfiguration)
+      dotnet pack "$proj" --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)
+    done
+  displayName: 'Restore, Build, and Pack Projects'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+    nuGetFeedType: 'internal'
+    publishVstsFeed: 'email2wajidkhan'
