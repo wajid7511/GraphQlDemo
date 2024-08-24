@@ -34,7 +34,7 @@ namespace GraphQl.Core
             ArgumentNullException.ThrowIfNull(input);
 
             var customer = _mapper.Map<Customer>(input);
-            var dbAddResult = await _customerDAL.CreateAsync(customer);
+            var dbAddResult = await _customerDAL.CreateCustomerAsync(customer);
 
             if (dbAddResult.IsSuccess && dbAddResult.Entity is not null)
             {
@@ -62,7 +62,7 @@ namespace GraphQl.Core
                 return null;
             }
 
-            var orderResult = await _customerDAL.CreateOrderAsync(customerOrder);
+            var orderResult = await _customerDAL.CreateCustomerOrderAsync(customerOrder);
 
             if (orderResult.IsSuccess && orderResult.Entity != null)
             {

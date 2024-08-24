@@ -15,8 +15,8 @@ public class EmailProcessor(CustomerDAL customerDAL, ILogger<EmailProcessor>? lo
 
     public override async ValueTask<bool> ProcessAsync(MessageDto messageDto)
     {
-        var order = await _customerDAL.GetCustomerOrderByIdAsync(Guid.Parse(messageDto.ReferenceId));
-        if (order == null)
+        var dbGetResult = await _customerDAL.GetCustomerOrderByIdAsync(Guid.Parse(messageDto.ReferenceId));
+        if (dbGetResult.IsError || !dbGetResult.IsSuccess || dbGetResult.Data == null)
         {
             _logger?.LogDebug("No order found with id {0}", messageDto.ReferenceId);
             return false;
