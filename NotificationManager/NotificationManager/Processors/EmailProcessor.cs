@@ -21,7 +21,7 @@ public class EmailProcessor(CustomerDAL customerDAL, ILogger<EmailProcessor>? lo
             _logger?.LogDebug("No order found with id {0}", messageDto.ReferenceId);
             return false;
         }
-        _logger?.LogDebug("I will send for order number {0}, later", order.Id.ToString());
+        _logger?.LogDebug("I will send for order number {0}, later", dbGetResult.Data.Id.ToString());
         return await base.ProcessAsync(messageDto);
     }
 }
