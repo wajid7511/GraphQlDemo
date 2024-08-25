@@ -1,4 +1,3 @@
-using System;
 using GraphQl.Abstractions;
 using GraphQl.Mongo.Database.DALs;
 using GraphQl.Mongo.Database.Options;
@@ -13,7 +12,7 @@ public class MongoDatabaseRegisterServices : IServiceRegistrationModule
 {
     public void RegisterServices(IServiceCollection services, ConfigurationManager configuration)
     {
-        services.Configure<MongoDbOptions>(configuration.GetSection("MongoConfigurations"));
+        services.Configure<MongoDbOptions>(configuration.GetSection(MongoDbOptions.CONFIG_PATH));
 
         services.AddSingleton<IDbBaseModelFactory, DbBaseModelFactory>();
         // Register IMongoDatabase
