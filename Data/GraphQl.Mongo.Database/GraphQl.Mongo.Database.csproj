@@ -5,19 +5,18 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
+  
   <ItemGroup>
     <PackageReference Include="MongoDB.Driver" Version="2.28.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\Abstractions\GraphQl.Abstractions\GraphQl.Abstractions.csproj" />
     <ProjectReference Include="..\..\Shared\GraphQlDemo.Shared\GraphQlDemo.Shared.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework> <!-- or another target framework -->
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
     <PackageId>GraphQlDemo.Database.Mongo</PackageId>
     <Version>1.0.0</Version>
     <Authors>Wajid</Authors>

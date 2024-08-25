@@ -4,10 +4,6 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-  </PropertyGroup>
-
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework> <!-- or another target framework -->
     <PackageId>GraphQlDemo.Sahred</PackageId>
     <Version>1.0.0</Version>
     <Authors>Wajid</Authors>
@@ -17,5 +13,7 @@
     <PackageProjectUrl>https://github.com/wajid7511/GraphQlDemo</PackageProjectUrl>
     <RepositoryUrl>https://github.com/wajid7511/GraphQlDemo</RepositoryUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild> <!-- Automatically create a package on build -->
+
   </PropertyGroup>
+
 </Project>

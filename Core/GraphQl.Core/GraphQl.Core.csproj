@@ -6,12 +6,8 @@
     <ProjectReference Include="..\..\Data\Database\GraphQl.Database.csproj" />
     <ProjectReference Include="..\..\Data\GraphQl.Mongo.Database\GraphQl.Mongo.Database.csproj" />
     <ProjectReference Include="..\..\Messaging\Producer.RabbitMq\Producer.RabbitMq.csproj" /> 
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
-  </ItemGroup>
-
+  </ItemGroup> 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
