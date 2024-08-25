@@ -18,6 +18,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <PackageId>GraphQlDemo.Database.Mongo</PackageId>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>    
     <Version>1.0.0</Version>
     <Authors>Wajid</Authors>
     <Company>Personal</Company>
