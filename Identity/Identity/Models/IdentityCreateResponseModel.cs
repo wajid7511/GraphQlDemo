@@ -4,14 +4,13 @@ namespace Identity.Models;
 
 public class IdentityCreateResponseModel
 {
-    [JsonPropertyName("id")]
-    public string Id { get; set; } = string.Empty;
     [JsonPropertyName("graphqlToken")]
     public string GraphqlToken { get; set; } = string.Empty;
-    [JsonPropertyName("refreshGraphqlToken")]
-    public string RefreshGraphqlToken { get; set; } = string.Empty;
     [JsonPropertyName("graphqlTokenExpiryDateTime")]
     public DateTimeOffset GraphqlTokenExpiryDateTime { get; set; } = DateTimeOffset.Now;
 
-
+    [JsonPropertyName("graphqlRefreshToken")]
+    public string GraphqlRefreshToken { get; set; } = string.Empty;
+    [JsonPropertyName("graphqlRefreshTokenExpiryDateTime")]
+    public DateTimeOffset GraphqlRefreshTokenExpiryDateTime { get; set; } = DateTimeOffset.Now;
 }

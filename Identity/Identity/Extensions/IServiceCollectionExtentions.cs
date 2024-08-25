@@ -1,5 +1,6 @@
 using System.Reflection;
 using GraphQl.Abstractions;
+using GraphQlDemo.Shared.Jwt;
 using Identity.Abstractions;
 using Identity.Core;
 using Identity.Mappers;
@@ -8,8 +9,10 @@ namespace Identity.Extensions;
 
 public static class IServiceCollectionExtentions
 {
-    public static IServiceCollection GetServiceCollection(this IServiceCollection services)
+    public static IServiceCollection AddIdentityServiceCollection(this IServiceCollection services, IConfiguration configuration)
     {
+        services.Configure<JtwTokenOptions>(configuration.GetSection(JtwTokenOptions.CONFIG_PATH));
+        services.AddSingleton<TokenService>();
         services.AddScoped<IIdentityManager, DefaultIdentityManager>();
         return services;
     }

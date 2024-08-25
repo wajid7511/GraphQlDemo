@@ -10,9 +10,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.GetServiceCollection();
-builder.Services.AddIdentityMapper();
 builder.Services.RegisterIdentityRegisterModules(builder.Configuration);
+
+builder.Services.AddIdentityServiceCollection(builder.Configuration);
+builder.Services.AddIdentityMapper();
 
 var app = builder.Build();
 

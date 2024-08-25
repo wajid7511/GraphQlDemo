@@ -4,16 +4,16 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
-
+  </PropertyGroup> 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="13.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.7" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <PackageReference Include="AutoMapper" Version="13.0.1" /> 
+    <PackageReference Include="GraphQlDemo.Abstractions" Version="1.24.17" /> 
+    <PackageReference Include="GraphQlDemo.Common" Version="1.24.17" /> 
+    <PackageReference Include="GraphQlDemo.Shared" Version="1.24.17" />
+    <PackageReference Include="GraphQlDemo.Database.Mongo" Version="1.24.17" />  
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" /> 
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.7" /> 
   </ItemGroup>
-
-  <ItemGroup> 
-    <ProjectReference Include="..\..\Data\GraphQl.Mongo.Database\GraphQl.Mongo.Database.csproj" />  
-    <ProjectReference Include="..\..\Common\GraphQl.Common\GraphQl.Common.csproj" />  
-  </ItemGroup>
+ 
 </Project>
