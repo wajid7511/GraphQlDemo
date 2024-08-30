@@ -26,6 +26,7 @@
     <PackageReference Include="HotChocolate.AspNetCore" Version="13.9.11" />
     <PackageReference Include="HotChocolate.AspNetCore.Authorization" Version="13.9.11" />
     <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="prometheus-net.AspNetCore" Version="8.2.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="../Data/Database/GraphQl.Database.csproj" />
