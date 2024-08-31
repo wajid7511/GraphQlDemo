@@ -18,8 +18,12 @@ public class CustomerDAL(
     private readonly IMongoCollection<Customer> _customerCollection = database.GetCollection<Customer>(mongoDbOptions.Value.CustomerCollectionName);
     private readonly IMongoCollection<CustomerOrder> _orderCollection = database.GetCollection<CustomerOrder>(mongoDbOptions.Value.OrdersCollectionName);
     private readonly ILogger<CustomerDAL>? _logger = logger;
-
-    // Create
+    #region Add Functions 
+    /// <summary>
+    /// Create Customer 
+    /// </summary>
+    /// <param name="customer"></param>
+    /// <returns></returns>
     public virtual async ValueTask<DbAddResult<Customer>> CreateCustomerAsync(Customer customer)
     {
         try
@@ -35,6 +39,11 @@ public class CustomerDAL(
         }
     }
 
+    /// <summary>
+    /// Create Customer order 
+    /// </summary>
+    /// <param name="customer"></param>
+    /// <returns></returns>
     public virtual async ValueTask<DbAddResult<CustomerOrder>> CreateCustomerOrderAsync(CustomerOrder customer)
     {
         try
@@ -49,6 +58,13 @@ public class CustomerDAL(
             return new DbAddResult<CustomerOrder>(false);
         }
     }
+    #endregion
+    #region Get Functions
+    /// <summary>
+    /// Get Customer Order by Order Id 
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     public virtual async ValueTask<DbGetResult<CustomerOrder>> GetCustomerOrderByIdAsync(Guid id)
     {
         try
@@ -86,6 +102,24 @@ public class CustomerDAL(
         {
             _logger?.LogError(ex, "Error while GetCustomerOrderByIdAsync");
             return null;
+        }
+    }
+    #endregion
+
+    public virtual async ValueTask<DbUpdateResult<CustomerOrder>> UpdateCustomerOrder(Guid id, CustomerOrder customerOrder)
+    {
+        try
+        {
+            await UpdateAsync(_orderCollection, id, customerOrder);
+            return new DbUpdateResult<CustomerOrder>(true, customerOrder);
+        }
+        catch (Exception ex)
+        {
+            _logger?.LogError(ex, "Unable to update Customer Order");
+            return new DbUpdateResult<CustomerOrder>(false)
+            {
+                Exception = ex
+            };
         }
     }
 }

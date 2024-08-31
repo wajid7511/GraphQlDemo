@@ -1,9 +1,9 @@
-using GraphQlDemo.Shared.Database;
+using System;
 
-namespace GraphQl.Database.Test;
+namespace GraphQlDemo.Shared.Tests.Database;
 
 [TestClass]
-public class DbAddResultTests
+public class DbUpdateResultTests
 {
     [TestMethod]
     public void Constructor_ShouldSetIsSuccessAndEntity()
@@ -13,12 +13,12 @@ public class DbAddResultTests
         bool isSuccess = true;
 
         // Act
-        var result = new DbAddResult<TestEntity>(isSuccess, entity);
+        var result = new DbUpdateResult<TestEntity>(isSuccess, entity);
 
         // Assert
         Assert.IsTrue(result.IsSuccess);
-        Assert.IsNotNull(result.Entity);
-        Assert.AreEqual(entity, result.Entity);
+        Assert.IsNotNull(result.Data);
+        Assert.AreEqual(entity, result.Data);
         Assert.IsFalse(result.IsError);
     }
 
@@ -29,7 +29,7 @@ public class DbAddResultTests
         var exception = new Exception("Test exception");
 
         // Act
-        var result = new DbAddResult<TestEntity>(false) { Exception = exception };
+        var result = new DbUpdateResult<TestEntity>(false) { Exception = exception };
 
         // Assert
         Assert.IsFalse(result.IsSuccess);
@@ -41,7 +41,7 @@ public class DbAddResultTests
     public void Constructor_ShouldNotSetException_WhenNotProvided()
     {
         // Act
-        var result = new DbAddResult<TestEntity>(true);
+        var result = new DbUpdateResult<TestEntity>(true);
 
         // Assert
         Assert.IsFalse(result.IsError);

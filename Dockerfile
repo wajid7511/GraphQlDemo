@@ -18,6 +18,8 @@ COPY ["Tests/GraphQl.Database.Test/GraphQl.Database.Test.csproj", "Tests/GraphQl
 COPY ["Tests/GraphQlDemo.API.Models.Test/GraphQlDemo.API.Models.Test.csproj", "Tests/GraphQlDemo.API.Models.Test/"]
 COPY ["Tests/GraphQlDemo.Test/GraphQlDemo.Test.csproj", "Tests/GraphQlDemo.Test/"]
 COPY ["Tests/GraphQl.Common.Test/GraphQl.Common.Test.csproj", "Tests/GraphQl.Common.Test/"]
+COPY ["Tests/GraphQlDemo.Shared.Tests/GraphQlDemo.Shared.Tests.csproj", "Tests/GraphQlDemo.Shared.Tests/"]
+
 
 # Restore dependencies
 RUN dotnet restore

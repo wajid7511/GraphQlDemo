@@ -6,6 +6,7 @@ using GraphQl.Database.Models;
 using GraphQl.Mongo.Database.DALs;
 using GraphQl.Mongo.Database.Models;
 using GraphQlDemo.API.Models;
+using GraphQlDemo.Shared.Enums;
 using GraphQlDemo.Shared.Messaging;
 
 namespace GraphQl.Core
@@ -55,6 +56,7 @@ namespace GraphQl.Core
             {
                 CustomerId = input.CustomerId,
                 OrderDate = _dateTimeProvider.UtcNow,
+                OrderStatusId = OrderStatusEnum.Created,
                 Items = await GetProductsDetailsAsync(input, cancellationToken)
             };
             if (customerOrder.Items.Count == 0)
