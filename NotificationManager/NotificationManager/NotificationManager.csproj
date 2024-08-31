@@ -8,13 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="GraphQlDemo.Common" Version="1.24.26" />
+    <PackageReference Include="GraphQlDemo.Database.Mongo" Version="1.24.26" />
+    <PackageReference Include="GraphQlDemo.Shared" Version="1.24.26" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
     <PackageReference Include="RabbitMQ.Client" Version="6.8.1" />
   </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\Shared\GraphQlDemo.Shared\GraphQlDemo.Shared.csproj" />
-    <ProjectReference Include="..\..\Data\GraphQl.Mongo.Database\GraphQl.Mongo.Database.csproj" />
-    <ProjectReference Include="..\..\Common\GraphQl.Common\GraphQl.Common.csproj" />
-  </ItemGroup>
+ 
 </Project>

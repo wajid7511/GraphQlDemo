@@ -18,7 +18,7 @@ public class EmailProcessor(CustomerDAL customerDAL, ILogger<EmailProcessor>? lo
         var dbGetResult = await _customerDAL.GetCustomerOrderByIdAsync(Guid.Parse(messageDto.ReferenceId));
         if (dbGetResult.IsError || !dbGetResult.IsSuccess || dbGetResult.Data == null)
         {
-            _logger?.LogDebug("No order found with id {0}", messageDto.ReferenceId);
+            _logger?.LogError("No order found with id {0}", messageDto.ReferenceId);
             return false;
         }
         _logger?.LogDebug("I will send for order number {0}, later", dbGetResult.Data.Id.ToString());
