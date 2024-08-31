@@ -19,6 +19,12 @@ public class GraphQlDemoProfile : Profile
             .ForMember(m => m.CreatedOn, opt => opt.Ignore())
             .ForMember(m => m.LastUpdateTime, opt => opt.Ignore())
             .ForMember(m => m.Grocery, opt => opt.Ignore());
+
+        CreateMap<GroceryInput, Grocery>()
+            .ForMember(m => m.Id, opt => opt.Ignore())
+            .ForMember(m => m.CreatedOn, opt => opt.Ignore())
+            .ForMember(m => m.LastUpdateTime, opt => opt.Ignore());
+
         CreateMap<Grocery, GrocerySchema>();
         CreateMap<Customer, CustomerDto>();
         CreateMap<Customer, CustomerSchema>();
