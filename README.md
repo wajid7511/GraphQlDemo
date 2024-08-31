@@ -61,7 +61,7 @@ This project demonstrates the implementation of a GraphQL API using ASP.NET Core
       dotnet restore
       ```
 3. **Configuration**
-Database Connection: Ensure your SQL database connection string is correctly configured in appsettings.json or appsettings.development.json.
+Database Connection: Ensure your SQL and mongo database connection string is correctly configured in appsettings.json or appsettings.development.json.
  
    **Note** Open Terminal should be open GraphQlDemo folder not Project 
 
