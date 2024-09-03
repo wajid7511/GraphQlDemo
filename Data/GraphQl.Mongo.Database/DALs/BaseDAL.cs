@@ -4,21 +4,21 @@ using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 
 namespace GraphQl.Mongo.Database.DALs;
-
-public class BaseDAL
+public class BaseDAL<T> where T : class
 {
     protected readonly IMongoDatabase _database;
     private readonly IDbBaseModelFactory _modelFactory;
+    protected readonly IMongoCollection<T> _collection;
 
-    public BaseDAL(IMongoDatabase database, IDbBaseModelFactory modelFactory)
+    public BaseDAL(IMongoDatabase database, IDbBaseModelFactory modelFactory, string collectionName)
     {
         _database = database;
         _modelFactory = modelFactory ?? throw new ArgumentNullException(nameof(modelFactory));
+        _collection = _database.GetCollection<T>(collectionName);
     }
 
     // Common Insert Method
-    protected async Task InsertOneAsync<T>(IMongoCollection<T> collection, T entity)
-        where T : class
+    public async Task InsertOneAsync(T entity)
     {
         try
         {
@@ -26,7 +26,7 @@ public class BaseDAL
             {
                 _modelFactory.Initialize(dbBaseModel, false);
             }
-            await collection.InsertOneAsync(entity);
+            await _collection.InsertOneAsync(entity);
         }
         catch (Exception ex)
         {
@@ -35,52 +35,48 @@ public class BaseDAL
     }
 
     // Common Read Method by Id
-    protected async Task<T?> GetByIdAsync<T>(IMongoCollection<T> collection, Guid id)
-        where T : class
+    public async Task<T?> GetByIdAsync(Expression<Func<T, bool>> filterPredicate)
     {
-        return await collection.Find(Builders<T>.Filter.Eq("Id", id)).FirstOrDefaultAsync();
+        return await _collection.Find(filterPredicate).FirstOrDefaultAsync();
     }
 
     // Common Read Method (All)
-    protected async Task<List<T>> GetAllAsync<T>(IMongoCollection<T> collection)
-        where T : class
+    public async Task<List<T>> GetAllAsync(Expression<Func<T, bool>> filterPredicate)
     {
-        return await collection.Find(_ => true).ToListAsync();
+        return await _collection.Find(filterPredicate).ToListAsync();
     }
 
     // Common Update Method
-    protected async Task UpdateAsync<T>(IMongoCollection<T> collection, Guid id, T updatedEntity)
-        where T : class
+    public async Task UpdateAsync(Expression<Func<T, bool>> filterPredicate, UpdateDefinition<T> entity)
     {
-        if (updatedEntity is DbBaseModel dbBaseModel)
+        if (entity == null)
         {
-            _modelFactory.Initialize(dbBaseModel, true);
+            throw new ArgumentNullException(nameof(entity));
         }
-        await collection.ReplaceOneAsync(Builders<T>.Filter.Eq("Id", id), updatedEntity);
-    }
+        // Create a filter to match the entities based on the predicate
+        var filter = Builders<T>.Filter.Where(filterPredicate);
 
+        // Use UpdateManyAsync to update all matching documents
+        await _collection.UpdateOneAsync(filter, entity);
+    }
     // Common Delete Method
-    protected async Task DeleteAsync<T>(IMongoCollection<T> collection, Guid id)
-        where T : class
+    public async Task<DeleteResult> DeleteAsync(Expression<Func<T, bool>> filterPredicate)
     {
-        await collection.DeleteOneAsync(Builders<T>.Filter.Eq("Id", id));
+        var filter = Builders<T>.Filter.Where(filterPredicate);
+        var result = await _collection.DeleteOneAsync(filter);
+        return result;
     }
 
     // Common Find by Predicate
-    protected async Task<List<T>> FindByPredicateAsync<T>(
-        IMongoCollection<T> collection,
-        Expression<Func<T, bool>> predicate
-    )
-        where T : class
+    public async Task<List<T>> FindByPredicateAsync(Expression<Func<T, bool>> predicate)
     {
         var filter = Builders<T>.Filter.Where(predicate);
-        return await collection.Find(filter).ToListAsync();
+        return await _collection.Find(filter).ToListAsync();
     }
 
     // Common IQueryable Method
-    protected IMongoQueryable<T> GetAllIQueryable<T>(IMongoCollection<T> collection)
-        where T : class
+    public IMongoQueryable<T> GetAllIQueryable()
     {
-        return collection.AsQueryable();
+        return _collection.AsQueryable();
     }
 }

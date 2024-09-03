@@ -23,5 +23,6 @@ public class MongoDatabaseRegisterServices : IServiceRegistrationModule
             return client.GetDatabase(settings.DatabaseName);
         });
         services.AddScoped<CustomerDAL>();
+        services.AddScoped<CustomerOrderDAL>();
     }
 }

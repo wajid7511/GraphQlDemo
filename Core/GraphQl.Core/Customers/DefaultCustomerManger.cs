@@ -13,6 +13,7 @@ namespace GraphQl.Core
 {
     public class DefaultCustomerManager(
         CustomerDAL customerDAL,
+        CustomerOrderDAL customerOrderDAL,
         ProductDAL productDAL,
         IMapper mapper,
         IDateTimeProvider dateTimeProvider,
@@ -20,6 +21,7 @@ namespace GraphQl.Core
         ) : ICustomerManager
     {
         private readonly CustomerDAL _customerDAL = customerDAL ?? throw new ArgumentNullException(nameof(customerDAL));
+        private readonly CustomerOrderDAL _customerOrderDAL = customerOrderDAL ?? throw new ArgumentNullException(nameof(customerOrderDAL));
         private readonly ProductDAL _productDAL = productDAL ?? throw new ArgumentNullException(nameof(productDAL));
         private readonly IMapper _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         private readonly IDateTimeProvider _dateTimeProvider =
@@ -64,7 +66,7 @@ namespace GraphQl.Core
                 return null;
             }
 
-            var orderResult = await _customerDAL.CreateCustomerOrderAsync(customerOrder);
+            var orderResult = await _customerOrderDAL.CreateCustomerOrderAsync(customerOrder);
 
             if (orderResult.IsSuccess && orderResult.Entity != null)
             {
