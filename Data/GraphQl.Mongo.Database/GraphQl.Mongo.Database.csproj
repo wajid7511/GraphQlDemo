@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="MongoDB.Driver" Version="2.28.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+    <ProjectReference Include="..\..\Abstractions\GraphQl.Abstractions\GraphQl.Abstractions.csproj" />
+    <ProjectReference Include="..\..\Shared\GraphQlDemo.Shared\GraphQlDemo.Shared.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <PackageId>GraphQlDemo.Database.Mongo</PackageId>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>    
+    <Version>1.0.0</Version>
+    <Authors>Wajid</Authors>
+    <Company>Personal</Company>
+    <Description>MongoDB Database layer for Graphql demo project</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression> <!-- or other license type -->
+    <PackageProjectUrl>https://github.com/wajid7511/GraphQlDemo</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/wajid7511/GraphQlDemo</RepositoryUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild> <!-- Automatically create a package on build -->
+  </PropertyGroup>
+</Project>

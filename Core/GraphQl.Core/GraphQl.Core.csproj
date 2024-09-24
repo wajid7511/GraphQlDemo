@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Abstractions\GraphQl.Abstractions\GraphQl.Abstractions.csproj" />
+    <ProjectReference Include="..\..\GraphQlDemo.API.Models\GraphQlDemo.API.Models.csproj" />
+    <ProjectReference Include="..\..\Data\Database\GraphQl.Database.csproj" />
+    <ProjectReference Include="..\..\Data\GraphQl.Mongo.Database\GraphQl.Mongo.Database.csproj" />
+    <ProjectReference Include="..\..\Messaging\Producer.RabbitMq\Producer.RabbitMq.csproj" /> 
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+  </ItemGroup> 
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+</Project>
