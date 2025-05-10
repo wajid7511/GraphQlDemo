@@ -1,24 +1,23 @@
-using GraphQl.Abstractions;
 using GraphQl.Core;
+using GraphQl.Database.DAL;
 using GraphQl.DependencyInject.Tests.Base;
 
 namespace GraphQl.DependencyInject.Tests;
 
 [TestClass]
-public class CoreRegisterServicesTests : ServiceCollectionAssert
+public class DatabaseRegisterServicesTests : ServiceCollectionAssert
 {
     [TestMethod]
     public void RegisterServices_Should_Register_Services_Into_DI()
     {
         // Arrange 
-        var module = new CoreRegisterServices();
+        var module = new DatabaseRegisterServices();
 
         // Act
         module.RegisterServices(Services, Configuration);
 
         // Assert
-        HasScoped<IProductManager, DefaultProductManager>();
-        HasScoped<IGroceryManager, DefaultGroceryManager>();
-        HasScoped<ICustomerManager, DefaultCustomerManager>();
+        HasScoped<ProductDAL>();
+        HasScoped<GroceryDAL>();
     }
 }

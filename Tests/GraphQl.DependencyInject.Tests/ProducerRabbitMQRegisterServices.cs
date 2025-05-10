@@ -1,24 +1,22 @@
 using GraphQl.Abstractions;
-using GraphQl.Common;
 using GraphQl.DependencyInject.Tests.Base;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+using Producer.RabbitMq;
 
 namespace GraphQl.DependencyInject.Tests;
 
 [TestClass]
-public class CommonRegisterServicesTests : ServiceCollectionAssert
+public class ProducerRabbitMQRegisterServicesTests : ServiceCollectionAssert
 {
     [TestMethod]
     public void RegisterServices_Should_Register_Services_Into_DI()
     {
         // Arrange 
-        var module = new CommonRegisterServices();
+        var module = new ProducerRabbitMQRegisterServices();
 
         // Act
         module.RegisterServices(Services, Configuration);
 
         // Assert
-        HasSingleton<IDateTimeProvider, DefaultDateTimeProvider>();
+        HasSingleton<IMessageProducer, DefaultProducerRabbitMQ>();
     }
 }

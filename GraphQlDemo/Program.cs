@@ -10,34 +10,6 @@ builder.Services.AddGraphQlDemoGraphQl();
 builder.Services.AddGraphQlDemoMapper();
 
 builder.Services.AddControllers();
-
-// builder.Services.AddAuthorization(c =>
-// {
-//     c.AddPolicy("NamePolicy", builder =>
-//     {
-//         builder.RequireAssertion(async context =>
-//         {
-//             if (context.Resource is IMiddlewareContext ctx)
-//             {
-
-//                 return true;
-//             }
-//             return false;
-//         });
-//     });
-//     c.AddPolicy("CreationDatePolicy", builder =>
-//     {
-//         builder.RequireAssertion(async context =>
-//         {
-//             if (context.Resource is IMiddlewareContext ctx)
-//             {
-//                 return true;
-//             }
-//             return false;
-//         });
-//     });
-// });
-
 var app = builder.Build();
 
 app.UseMetricServer();
