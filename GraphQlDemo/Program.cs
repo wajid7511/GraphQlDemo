@@ -3,11 +3,8 @@ using Prometheus;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddGraphQlDemoOptions(builder.Configuration);
 builder.Services.RegisterGraphQlDemoIServicesRegisterModules(builder.Configuration);
-builder.Services.AddDatabase(builder.Configuration);
-builder.Services.AddGraphQlDemoGraphQl();
-builder.Services.AddGraphQlDemoMapper();
+builder.Services.AddGraphQlDemoServices(builder.Configuration);
 
 builder.Services.AddControllers();
 var app = builder.Build();

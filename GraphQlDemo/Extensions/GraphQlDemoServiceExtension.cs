@@ -8,13 +8,21 @@ namespace GraphQlDemo;
 
 public static class GraphQlDemoServiceExtension
 {
-    public static IServiceCollection AddGraphQlDemoMapper(this IServiceCollection service)
+    public static IServiceCollection AddGraphQlDemoServices(this IServiceCollection services, ConfigurationManager configuration)
+    {
+        services.AddGraphQlDemoOptions(configuration);
+        services.AddDatabase(configuration);
+        services.AddGraphQlDemoGraphQl();
+        services.AddGraphQlDemoMapper();
+        return services;
+    }
+    private static IServiceCollection AddGraphQlDemoMapper(this IServiceCollection service)
     {
         service.AddAutoMapper(typeof(GraphQlDemoProfile));
         return service;
     }
 
-    public static IServiceCollection AddGraphQlDemoOptions(
+    private static IServiceCollection AddGraphQlDemoOptions(
         this IServiceCollection service,
         IConfiguration configuration
     )
@@ -64,7 +72,7 @@ public static class GraphQlDemoServiceExtension
         }
     }
 
-    public static IServiceCollection AddGraphQlDemoGraphQl(this IServiceCollection service)
+    private static IServiceCollection AddGraphQlDemoGraphQl(this IServiceCollection service)
     {
         service
             .AddGraphQLServer()
@@ -85,7 +93,7 @@ public static class GraphQlDemoServiceExtension
         return service;
     }
 
-    public static IServiceCollection AddDatabase(
+    private static IServiceCollection AddDatabase(
         this IServiceCollection service,
         ConfigurationManager configuration
     )

@@ -15,6 +15,8 @@
   <ItemGroup>
     <ProjectReference Include="../../Common/GraphQl.Common/GraphQl.Common.csproj" />
     <ProjectReference Include="../../Core/GraphQl.Core/GraphQl.Core.csproj" />
+    <ProjectReference Include="../../Data/Database/GraphQl.Database.csproj" />
+    <ProjectReference Include="../../GraphQlDemo/GraphQlDemo.csproj" />
     <ProjectReference Include="../../Messaging/Producer.RabbitMq/Producer.RabbitMq.csproj" />
   </ItemGroup>
 
